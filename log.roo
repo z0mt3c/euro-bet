@@ -57,3 +57,4 @@ finder add findGameGroupsByNameEquals
 focus --class ~.domain.Team 
 finder list
 finder add findTeamsByExternalTeamIdEquals
+backup
