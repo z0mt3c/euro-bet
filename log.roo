@@ -1,0 +1,49 @@
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-13 15:36:35
+project --topLevelPackage eu.zomtec.em2012 --projectName Em2012 --java 6 --packaging WAR
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-05-13 15:36:37
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-13 15:36:56
+hint
+jpa setup --database MYSQL --provider HIBERNATE 
+backup
+hint
+entity jpa --class ~.domain.TeamGroup --testAutomatically 
+field string --fieldName name --notNull
+entity jpa --class ~.domain.BetUserRole --testAutomatically 
+field string --fieldName name --notNull
+entity jpa --class ~.domain.Team --testAutomatically 
+field string --fieldName name --notNull
+field reference --fieldName teamGroup --type ~.domain.TeamGroup --notNull
+field number --fieldName externalTeamId --type java.lang.Long --notNull
+entity jpa --class ~.domain.GameGroup --testAutomatically 
+field string --fieldName name --notNull
+field number --fieldName sortOrder --type java.lang.Integer
+entity jpa --class ~.domain.Game --testAutomatically 
+field date --fieldName kickOff --type java.util.Date --notNull
+field reference --fieldName teamHome --type ~.domain.Team --notNull
+field reference --fieldName teamAway --type ~.domain.Team --notNull
+field number --fieldName scoreHome --type java.lang.Integer
+field number --fieldName scoreAway --type java.lang.Integer
+field enum --fieldName gameStatus --type ~.domain.GameStatus --notNull
+field date --fieldName lastScoreUpdate --type java.util.Date
+field reference --fieldName gameGroup --type ~.domain.GameGroup --notNull
+entity jpa --class ~.domain.BetUser --testAutomatically 
+field string --fieldName name --notNull
+// [failed] field string --fieldName name --notNull --sizeMin 3 --sizeMax 30
+entity jpa --class ~.domain.BetUser --testAutomatically 
+field string --fieldName username --notNull --sizeMin 3 --sizeMax 30
+field string --fieldName password --notNull --sizeMax 100
+field set --fieldName roles --type ~.domain.BetUserRole --cardinality MANY_TO_MANY --class ~.domain.BetUser
+entity jpa --class ~.domain.Bet --testAutomatically 
+field reference --fieldName betUser --type ~.domain.BetUser
+entity jpa --class ~.domain.Bet --testAutomatically 
+field reference --fieldName betUser --type ~.domain.BetUser --notNull
+field reference --fieldName game --type ~.domain.Game --notNull 
+field number --fieldName scoreHome --type java.lang.Integer
+field number --fieldName scoreAway --type java.lang.Integer
+field date --fieldName lastBetChange --type java.util.Date --notNull
+field date --fieldName lastBetCalculation --type java.util.Date
+field enum --fieldName betStatus --type ~.domain.BetStatus --notNull
+field enum --fieldName scoreType --type ~.domain.BetScoreType
+field number --fieldName score --type java.lang.Integer
+backup
+backup
