@@ -7,11 +7,17 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findGameGroupsByNameEquals" })
 public class GameGroup {
 
     @NotNull
     private String name;
 
     private Integer sortOrder;
+
+    public GameGroup(String name, Integer sortOrder) {
+        super();
+        this.name = name;
+        this.sortOrder = sortOrder;
+    }
 }

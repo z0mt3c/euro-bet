@@ -47,3 +47,13 @@ field enum --fieldName scoreType --type ~.domain.BetScoreType
 field number --fieldName score --type java.lang.Integer
 backup
 backup
+focus --class ~.domain.TeamGroup
+finder list
+// [failed] finder add findTeamGroupsByNameEquals
+finder add findTeamGroupsByNameEquals
+focus --class ~.domain.GameGroup
+finder list
+finder add findGameGroupsByNameEquals
+focus --class ~.domain.Team 
+finder list
+finder add findTeamsByExternalTeamIdEquals

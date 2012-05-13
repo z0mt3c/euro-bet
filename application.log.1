@@ -1,6 +1,6 @@
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@552a38da] to prepare test instance [eu.zomtec.em2012.domain.GameIntegrationTest@61845cf3]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5f229147] to prepare test instance [eu.zomtec.em2012.domain.GameIntegrationTest@5c1433d1]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -39,7 +39,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -58,7 +58,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -85,7 +85,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -107,7 +107,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@496246a9] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@530d26e2]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@770a407a] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@420f46a4]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -146,7 +146,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -165,7 +165,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -192,7 +192,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -214,7 +214,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@496246a9] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@7d8bf453]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@770a407a] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@13d3589e]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -253,7 +253,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -272,7 +272,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -299,7 +299,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -321,7 +321,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@496246a9] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@40761b3f]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@770a407a] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@5419323a]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -360,7 +360,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -379,7 +379,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -406,7 +406,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -428,7 +428,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@496246a9] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@fdcb343]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@770a407a] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@a97b8a3]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -467,7 +467,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -486,7 +486,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -513,7 +513,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -535,7 +535,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@496246a9] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@13f77c71]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@770a407a] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@1c4e3bc6]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -574,7 +574,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -593,7 +593,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -620,7 +620,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -642,7 +642,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@496246a9] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@44c5831e]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@770a407a] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@1e1798c1]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -681,7 +681,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -700,7 +700,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -727,7 +727,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -749,7 +749,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@496246a9] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@3da3d36f]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@770a407a] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@77cb817b]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -788,7 +788,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -807,7 +807,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -834,7 +834,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -856,7 +856,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@496246a9] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@4715f3c5]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@770a407a] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@4fd51122]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -895,7 +895,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -914,7 +914,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -941,7 +941,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -963,7 +963,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@496246a9] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@11aa20c4]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@770a407a] to prepare test instance [eu.zomtec.em2012.domain.TeamGroupIntegrationTest@fedc5be]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -1002,7 +1002,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -1021,7 +1021,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -1048,7 +1048,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
@@ -1070,7 +1070,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 	... 66 more
 INFO main eu.zomtec.em2012.Bootstrapper - Bootstrapping started...
 ERROR main org.hibernate.util.JDBCExceptionReporter - Column 'team_group' cannot be null
-ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@3d0db4fa] to prepare test instance [eu.zomtec.em2012.domain.TeamIntegrationTest@4ee4a866]
+ERROR main org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@398e9aa3] to prepare test instance [eu.zomtec.em2012.domain.TeamIntegrationTest@414a60da]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
@@ -1109,7 +1109,7 @@ Caused by: org.springframework.orm.jpa.JpaSystemException: org.hibernate.excepti
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethod$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj:43)
 	at eu.zomtec.em2012.domain.Team.persist(Team.java:1)
 	at eu.zomtec.em2012.domain.Team_Roo_Jpa_ActiveRecord.ajc$interMethodDispatch1$eu_zomtec_em2012_domain_Team_Roo_Jpa_ActiveRecord$eu_zomtec_em2012_domain_Team$persist(Team_Roo_Jpa_ActiveRecord.aj)
-	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:65)
+	at eu.zomtec.em2012.Bootstrapper.init(Bootstrapper.java:69)
 	at eu.zomtec.em2012.Bootstrapper.bootstrap(Bootstrapper.java:27)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:20)
 	at eu.zomtec.em2012.Bootstrapper.onApplicationEvent(Bootstrapper.java:1)
@@ -1128,7 +1128,7 @@ Caused by: javax.persistence.PersistenceException: org.hibernate.exception.Const
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1315)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1321)
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:843)
-	at sun.reflect.GeneratedMethodAccessor22.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
 	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240)
@@ -1155,7 +1155,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not inser
 	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:837)
 	... 51 more
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'team_group' cannot be null
-	at sun.reflect.GeneratedConstructorAccessor99.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor101.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
 	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
