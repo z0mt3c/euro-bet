@@ -30,11 +30,11 @@ public class Bet {
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(style = "MM")
     private Date lastBetChange;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(style = "MM")
     private Date lastBetCalculation;
 
     @NotNull

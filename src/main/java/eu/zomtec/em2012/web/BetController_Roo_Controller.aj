@@ -104,8 +104,8 @@ privileged aspect BetController_Roo_Controller {
     }
     
     void BetController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("bet_lastbetchange_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("bet_lastbetcalculation_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("bet_lastbetchange_date_format", DateTimeFormat.patternForStyle("MM", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("bet_lastbetcalculation_date_format", DateTimeFormat.patternForStyle("MM", LocaleContextHolder.getLocale()));
     }
     
     void BetController.populateEditForm(Model uiModel, Bet bet) {

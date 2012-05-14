@@ -18,7 +18,7 @@ public class Game {
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(style = "MM")
     private Date kickOff;
 
     @NotNull
@@ -38,7 +38,7 @@ public class Game {
     private GameStatus gameStatus;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(style = "MM")
     private Date lastScoreUpdate;
 
     @NotNull

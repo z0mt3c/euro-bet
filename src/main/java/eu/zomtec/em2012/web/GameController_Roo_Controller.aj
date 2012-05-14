@@ -106,8 +106,8 @@ privileged aspect GameController_Roo_Controller {
     }
     
     void GameController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("game_kickoff_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("game_lastscoreupdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("game_kickoff_date_format", DateTimeFormat.patternForStyle("MM", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("game_lastscoreupdate_date_format", DateTimeFormat.patternForStyle("MM", LocaleContextHolder.getLocale()));
     }
     
     void GameController.populateEditForm(Model uiModel, Game game) {
