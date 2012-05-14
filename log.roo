@@ -58,3 +58,10 @@ focus --class ~.domain.Team
 finder list
 finder add findTeamsByExternalTeamIdEquals
 backup
+// [failed] web mvc setup
+// [failed] web mvc setup
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-13 21:59:33
+web mvc setup
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-13 22:01:01
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-05-13 22:01:07
+web mvc all --package ~.web
