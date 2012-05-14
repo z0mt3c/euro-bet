@@ -31,5 +31,8 @@
             <menu:item id="i_betuserrole_new" messageCode="global_menu_new" url="/betuserroles?form" z="SU2DDlHUeWBLk3e8A6kPnLz+4w8="/>
             <menu:item id="i_betuserrole_list" messageCode="global_menu_list" url="/betuserroles?page=1&amp;size=${empty param.size ? 10 : param.size}" z="9s4dGqZXvTXfkKAZo+1M6N0ihvU="/>
         </menu:category>
+        <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
+            <menu:item id="i_controller__startindex_id" messageCode="global_generic" url="/start/index" z="pDVBjkztM24JcvodGD4//gEAz4o="/>
+        </menu:category>
     </menu:menu>
 </div>
