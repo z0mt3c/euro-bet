@@ -14,10 +14,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Test</title>
-
-<link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+<spring:url value="/styles/bet.css" var="bet_css" />
+<spring:url value="/js/bet.js" var="bet_js" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+<link rel="stylesheet" href="${bet_css}" />
 <script src="http://code.jquery.com/jquery-1.6.4.min.js">
+<!-- dummy -->
+</script>
+<script src="${bet_js}">
 <!-- dummy -->
 </script>
 <script
@@ -55,11 +59,17 @@
 							<c:when test="${game.betOpen}">
 								<tiles:insertTemplate template="/WEB-INF/snippets/game-list-item-open.jspx">
 									<tiles:putAttribute name="game" value="${game}"/>
+									<c:if test="${not empty bets[game.id]}">
+										<tiles:putAttribute name="bet" value="${bets[game.id]}"/>
+									</c:if>
 								</tiles:insertTemplate>
 							</c:when>
 							<c:otherwise>
 								<tiles:insertTemplate template="/WEB-INF/snippets/game-list-item-closed.jspx">
 									<tiles:putAttribute name="game" value="${game}"/>
+									<c:if test="${not empty bets[game.id]}">
+										<tiles:putAttribute name="bet" value="${bets[game.id]}"/>
+									</c:if>
 								</tiles:insertTemplate>
 							</c:otherwise>
 						</c:choose>

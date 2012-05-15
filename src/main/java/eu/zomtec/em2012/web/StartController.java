@@ -1,5 +1,6 @@
 package eu.zomtec.em2012.web;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import eu.zomtec.em2012.domain.Bet;
 import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameGroup;
 import eu.zomtec.em2012.manager.BetManager;
@@ -27,6 +29,7 @@ import eu.zomtec.em2012.manager.BetManager;
 @Controller
 public class StartController {
 	
+	private static final long DUMMY_USER_ID = 1L;
 	@Autowired
 	private BetManager betManager;
 
@@ -55,6 +58,9 @@ public class StartController {
     	final List<Game> games = gamesQuery.getResultList();
     	modelMap.put("games", games);
     	
+    	final HashMap<Long, Bet> bets = betManager.getBetsForGames(DUMMY_USER_ID, games);
+    	modelMap.put("bets", bets);
+    	
     	return new ModelAndView("start/index", modelMap);
     }
     
@@ -66,14 +72,14 @@ public class StartController {
     }
     
     
-    @RequestMapping("bet")
-    public @ResponseBody boolean bet(@RequestParam long gameId, @RequestParam Integer home, @RequestParam Integer away) {
+    @RequestMapping(value="bet", method=RequestMethod.POST)
+    public @ResponseBody String bet(@RequestParam long gameId, @RequestParam Integer home, @RequestParam Integer away) {
     	final Game game = Game.findGame(gameId);
     	
     	if (!game.isBetOpen()) {
-    		return false;
+    		return Boolean.TRUE.toString();
     	} else {
-    		return betManager.placeBet(1L, gameId, home, away);
+    		return Boolean.valueOf(betManager.placeBet(DUMMY_USER_ID, gameId, home, away)).toString();
     	}
     }
 }

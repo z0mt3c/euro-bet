@@ -6,16 +6,28 @@
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
 	<tiles:importAttribute />
+	
+	<c:choose>
+	<c:when test="${not empty bet}">
+		<c:set var="scoreHome" value="${bet.scoreHome}"/>
+		<c:set var="scoreAway" value="${bet.scoreHome}"/>
+	</c:when>
+	<c:otherwise>
+	</c:otherwise>
+	</c:choose>
+	
+	
 	<c:url value="game/${game.id}" var="gameUrl" />
 	<li>
 		<div style="float: right; margin-top: 10px;">
-			<input name="name" id="name" data-mini="true" value="" size="2"
-				maxlength="2" style="width: 20px; display: inline-block;" /><span>:</span><input
-				name="name" id="name" data-mini="true" value="" size="2"
-				maxlength="2" style="width: 20px; display: inline-block;" /><a
-				href="index.html" data-role="button" data-icon="check"
-				data-iconpos="notext"
-				style="display: inline-block; float: right; margin-top: 4px;">Save</a>
+			<form class="betForm">
+			<input name="gameId" type="hidden" value="${game.id}" />
+				<input name="home" data-mini="true" value="${scoreHome}" size="2" maxlength="2"
+					class="inputBet" /><span>:</span><input name="away"
+					data-mini="true" value="${scoreAway}" size="2" maxlength="2" class="inputBet" /><a
+					href="index.html" data-role="button" data-icon="check"
+					data-iconpos="notext" rel="external" class="placeBet">Save</a>
+			</form>
 		</div>
 		<h1 style="display: inline-block;">${game.teamHome.name} -
 			${game.teamAway.name}</h1>

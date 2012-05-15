@@ -66,4 +66,9 @@ public class Game {
     	calendar.add(GregorianCalendar.MINUTE, CLOSE_BET_BEFORE_GAME_IN_MINUTES);
     	return GameStatus.UPCOMMING.equals(gameStatus) && calendar.getTime().before(kickOff);
     }
+
+	@Override
+	public String toString() {
+		return teamHome + " : " + teamAway;
+	}
 }

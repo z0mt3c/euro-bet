@@ -1,0 +1,11 @@
+a.placeBet {
+	display: inline-block;
+	float: right;
+	margin-top: 4px;
+}
+
+input.inputBet {
+	width: 20px;
+	display: inline-block;
+	text-align:center;
+}
