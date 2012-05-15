@@ -1,7 +1,12 @@
-a.placeBet {
+a.editBet, a.placeBet {
 	display: inline-block;
 	float: right;
 	margin-top: 4px;
+}
+
+span.readOnlyBetScore {
+	margin:10px;
+	float:right;
 }
 
 input.inputBet {

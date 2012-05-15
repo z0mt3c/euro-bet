@@ -10,7 +10,7 @@
 	<c:choose>
 	<c:when test="${not empty bet}">
 		<c:set var="scoreHome" value="${bet.scoreHome}"/>
-		<c:set var="scoreAway" value="${bet.scoreHome}"/>
+		<c:set var="scoreAway" value="${bet.scoreAway}"/>
 	</c:when>
 	<c:otherwise>
 	</c:otherwise>
@@ -19,13 +19,17 @@
 	
 	<c:url value="game/${game.id}" var="gameUrl" />
 	<li>
-		<div style="float: right; margin-top: 10px;">
+		<div style="float: right; margin-top: 10px;	${not empty bet?'':'display:none;'}" class="readBetContainer">
+			<a href="#" data-role="button" data-icon="gear" data-iconpos="notext" rel="external" class="editBet">Save</a>
+			<span class="readOnlyBetScore">${scoreHome} : ${scoreAway}</span>
+		</div>
+		<div style="float: right; margin-top: 10px; ${empty bet?'':'display:none;'}" class="placeBetContainer">
 			<form class="betForm">
 			<input name="gameId" type="hidden" value="${game.id}" />
 				<input name="home" data-mini="true" value="${scoreHome}" size="2" maxlength="2"
 					class="inputBet" /><span>:</span><input name="away"
 					data-mini="true" value="${scoreAway}" size="2" maxlength="2" class="inputBet" /><a
-					href="index.html" data-role="button" data-icon="check"
+					href="#" data-role="button" data-icon="check"
 					data-iconpos="notext" rel="external" class="placeBet">Save</a>
 			</form>
 		</div>
