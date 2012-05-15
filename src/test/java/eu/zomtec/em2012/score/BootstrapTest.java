@@ -1,4 +1,4 @@
-package eu.zomtec.em2012.calculator;
+package eu.zomtec.em2012.score;
 
 import junit.framework.Assert;
 

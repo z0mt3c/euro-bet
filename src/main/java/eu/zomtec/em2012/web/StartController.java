@@ -6,15 +6,19 @@ import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameGroup;
+import eu.zomtec.em2012.manager.BetManager;
 
 /**
  * Should contain the start page later - now just for testing.
@@ -22,6 +26,9 @@ import eu.zomtec.em2012.domain.GameGroup;
 @RequestMapping("/start/**")
 @Controller
 public class StartController {
+	
+	@Autowired
+	private BetManager betManager;
 
     @RequestMapping(method = RequestMethod.POST, value = "{id}")
     public void post(@PathVariable Long id, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
@@ -55,7 +62,18 @@ public class StartController {
     public ModelAndView game(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long gameId) {
     	final Game game = Game.findGame(gameId);
     	modelMap.put("game", game);
-    	
     	return new ModelAndView("start/index", modelMap);
+    }
+    
+    
+    @RequestMapping("bet")
+    public @ResponseBody boolean bet(@RequestParam long gameId, @RequestParam Integer home, @RequestParam Integer away) {
+    	final Game game = Game.findGame(gameId);
+    	
+    	if (!game.isBetOpen()) {
+    		return false;
+    	} else {
+    		return betManager.placeBet(1L, gameId, home, away);
+    	}
     }
 }

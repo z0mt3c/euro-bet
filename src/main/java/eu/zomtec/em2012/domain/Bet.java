@@ -1,10 +1,14 @@
 package eu.zomtec.em2012.domain;
 
 import java.util.Date;
+
+import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.NoResultException;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -13,7 +17,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findBetsByGame" })
 public class Bet {
 
     @NotNull
@@ -45,4 +49,19 @@ public class Bet {
     private BetScoreType scoreType;
 
     private Integer score;
+    
+    
+    public static Bet findBetByBetUserAndGame(BetUser betUser, Game game) {
+    	try {
+	        if (game == null) throw new IllegalArgumentException("The game argument is required");
+	        if (betUser == null) throw new IllegalArgumentException("The betUser argument is required");
+	        EntityManager em = Bet.entityManager();
+	        TypedQuery<Bet> q = em.createQuery("SELECT o FROM Bet AS o WHERE o.game = :game AND o.betUser = :user", Bet.class);
+	        q.setParameter("game", game);
+	        q.setParameter("user", betUser);
+	        return q.getSingleResult();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
 }

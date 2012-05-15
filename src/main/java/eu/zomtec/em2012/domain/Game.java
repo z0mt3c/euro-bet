@@ -1,12 +1,14 @@
 package eu.zomtec.em2012.domain;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,7 +21,9 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord(finders = { "findGamesByGameGroup" })
 public class Game {
 
-    @NotNull
+    private static final int CLOSE_BET_BEFORE_GAME_IN_MINUTES = 10;
+
+	@NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "MM")
     private Date kickOff;
@@ -51,8 +55,15 @@ public class Game {
     public static TypedQuery<Game> findGamesByGameGroupOrderByStart(GameGroup gameGroup) {
         if (gameGroup == null) throw new IllegalArgumentException("The gameGroup argument is required");
         EntityManager em = entityManager();
-        TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.gameGroup = :gameGroup ORDER BY o.kickOff ASC, o.gameStatus ASC", Game.class);
+        TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.gameGroup = :gameGroup ORDER BY o.gameStatus DESC, o.kickOff ASC", Game.class);
         q.setParameter("gameGroup", gameGroup);
         return q;
+    }
+    
+    @Transient
+    public boolean isBetOpen() {
+    	final GregorianCalendar calendar = new GregorianCalendar();
+    	calendar.add(GregorianCalendar.MINUTE, CLOSE_BET_BEFORE_GAME_IN_MINUTES);
+    	return GameStatus.UPCOMMING.equals(gameStatus) && calendar.getTime().before(kickOff);
     }
 }
