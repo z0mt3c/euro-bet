@@ -17,11 +17,12 @@
 	</c:otherwise>
 	</c:choose>
 	
-	
+	<spring:url value="/images/bet.png" var="bet_png"/>
 	<c:url value="game/${game.id}" var="gameUrl" />
 	<li>
 		<div style="float: right; margin-top: 10px;	${not empty bet?'':'display:none;'}" class="readBetContainer">
 			<a href="#" data-role="button" data-icon="gear" data-iconpos="notext" rel="external" class="editBet">Save</a>
+			<img src="${bet_png}" style="margin-top:12px;"/>
 			<span class="readOnlyBetScore">${scoreHome} : ${scoreAway}</span>
 		</div>
 		<div style="float: right; margin-top: 10px; ${empty bet?'':'display:none;'}" class="placeBetContainer">

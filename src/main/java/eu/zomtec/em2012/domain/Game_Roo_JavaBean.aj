@@ -75,4 +75,12 @@ privileged aspect Game_Roo_JavaBean {
         this.gameGroup = gameGroup;
     }
     
+    public Long Game.getExternalGameId() {
+        return this.externalGameId;
+    }
+    
+    public void Game.setExternalGameId(Long externalGameId) {
+        this.externalGameId = externalGameId;
+    }
+    
 }

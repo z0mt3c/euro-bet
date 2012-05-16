@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import eu.zomtec.em2012.domain.Bet;
+import eu.zomtec.em2012.domain.BetUser;
 import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameGroup;
 import eu.zomtec.em2012.manager.BetManager;
@@ -68,6 +69,23 @@ public class StartController {
     public ModelAndView game(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long gameId) {
     	final Game game = Game.findGame(gameId);
     	modelMap.put("game", game);
+    	
+    	final TypedQuery<Bet> betsQery = Bet.findBetByBetGameOrderByScoreType(game);
+    	final List<Bet> bets = betsQery.getResultList();
+    	modelMap.put("bets", bets);
+    	
+    	return new ModelAndView("start/index", modelMap);
+    }
+    
+    @RequestMapping("user/{userId}")
+    public ModelAndView user(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long userId) {
+    	final BetUser betUser = BetUser.findBetUser(userId);
+    	modelMap.put("betUser", betUser);
+    	
+    	final TypedQuery<Bet> betsQery = Bet.findBetByUserOrderByKickOff(betUser);
+    	final List<Bet> bets = betsQery.getResultList();
+    	modelMap.put("bets", bets);
+    	
     	return new ModelAndView("start/index", modelMap);
     }
     

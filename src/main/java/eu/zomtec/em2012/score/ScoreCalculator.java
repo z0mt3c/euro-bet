@@ -1,15 +1,18 @@
 package eu.zomtec.em2012.score;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
 
 import eu.zomtec.em2012.domain.Bet;
 import eu.zomtec.em2012.domain.BetScoreType;
 import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameStatus;
 
+@Component
 public class ScoreCalculator {
-	public void reviewBets(Game game, Set<Bet> bets) {
+	public void reviewBets(Game game, List<Bet> bets) {
 		for (Bet bet : bets) {
 			reviewBet(game, bet);
 		}

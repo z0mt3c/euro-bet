@@ -14,3 +14,26 @@ input.inputBet {
 	display: inline-block;
 	text-align:center;
 }
+
+div.bubbleGroup {
+	border: 0 !important; 
+	background: 0 !important; 
+	padding-top: 8px !important;
+   	right: 41px !important;
+}
+
+div.bubbleGroup div.ui-li-count {
+	float: right;
+	display: inline-block;
+	position: static;
+	margin-left: 2px;
+}
+
+.left {
+	float:left;
+}
+
+img.bubbleIcon {
+	margin-right: 4px;	
+	margin-left:-2px;
+}

@@ -5,6 +5,7 @@ package eu.zomtec.em2012.domain;
 
 import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameGroup;
+import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -15,6 +16,14 @@ privileged aspect Game_Roo_Finder {
         EntityManager em = Game.entityManager();
         TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.gameGroup = :gameGroup", Game.class);
         q.setParameter("gameGroup", gameGroup);
+        return q;
+    }
+    
+    public static TypedQuery<Game> Game.findGamesByKickOffLessThanEquals(Date kickOff) {
+        if (kickOff == null) throw new IllegalArgumentException("The kickOff argument is required");
+        EntityManager em = Game.entityManager();
+        TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.kickOff <= :kickOff", Game.class);
+        q.setParameter("kickOff", kickOff);
         return q;
     }
     

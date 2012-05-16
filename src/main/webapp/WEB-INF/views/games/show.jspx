@@ -11,5 +11,6 @@
         <field:display field="gameStatus" id="s_eu_zomtec_em2012_domain_Game_gameStatus" object="${game}" z="5JvqiDN86fdACtEo7lQm4LyE8Ss="/>
         <field:display date="true" dateTimePattern="${game_lastscoreupdate_date_format}" field="lastScoreUpdate" id="s_eu_zomtec_em2012_domain_Game_lastScoreUpdate" object="${game}" z="J/nbP2r7SicpWTW//B8UXEeh5No="/>
         <field:display field="gameGroup" id="s_eu_zomtec_em2012_domain_Game_gameGroup" object="${game}" z="W1WfzLT9G3GaXU+ZKVPH2yXw6hQ="/>
+        <field:display field="externalGameId" id="s_eu_zomtec_em2012_domain_Game_externalGameId" object="${game}" z="ibI/W5hF+acB2OW+jedb1JOZuF0="/>
     </page:show>
 </div>

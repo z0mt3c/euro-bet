@@ -31,8 +31,26 @@
 				<fmt:formatDate value="${game.kickOff}" type="both"
 					timeStyle="short" dateStyle="short" />
 			</p>
-			<div class="ui-li-count" style="right: 80px;">${game.gameStatus}:
-				${game.scoreHome} : ${game.scoreAway}</div> <span class="ui-li-count">+
-				?</span>
+			<div class="ui-li-count bubbleGroup"> 
+				<spring:url value="/images/bet.png" var="bet_png"/>
+				<c:choose>
+				<c:when test="${empty bet}">
+					<div class="ui-li-count"><img src="${bet_png}" class="left bubbleIcon"/> -:-</div> 
+				</c:when>
+				<c:otherwise>
+					<div class="ui-li-count">
+						<c:choose>
+							<c:when test="${bet.score > 0}">+ ${bet.score}</c:when>
+							<c:otherwise>0</c:otherwise>
+						</c:choose>
+					</div>
+					<div class="ui-li-count"><img src="${bet_png}" class="left bubbleIcon"/> ${bet.scoreHome}:${bet.scoreAway}</div> 
+				</c:otherwise>
+				</c:choose>
+				
+				<spring:url value="/images/game.png" var="game_png"/>
+				<div class="ui-li-count"><img src="${game_png}" class="left bubbleIcon"/> ${game.scoreHome}:${game.scoreAway}</div> 
+				<div class="ui-li-count">${game.gameStatus}</div> 
+			</div>
 	</a></li>
 </jsp:root>

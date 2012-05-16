@@ -39,6 +39,7 @@ privileged aspect GameDataOnDemand_Roo_DataOnDemand {
     
     public Game GameDataOnDemand.getNewTransientGame(int index) {
         Game obj = new Game();
+        setExternalGameId(obj, index);
         setGameGroup(obj, index);
         setGameStatus(obj, index);
         setKickOff(obj, index);
@@ -48,6 +49,11 @@ privileged aspect GameDataOnDemand_Roo_DataOnDemand {
         setTeamAway(obj, index);
         setTeamHome(obj, index);
         return obj;
+    }
+    
+    public void GameDataOnDemand.setExternalGameId(Game obj, int index) {
+        Long externalGameId = new Integer(index).longValue();
+        obj.setExternalGameId(externalGameId);
     }
     
     public void GameDataOnDemand.setGameGroup(Game obj, int index) {

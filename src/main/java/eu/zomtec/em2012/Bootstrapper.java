@@ -127,6 +127,7 @@ public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> 
 				game.setScoreHome(match.getScoreHome());
 				game.setTeamHome(Team.findTeamsByExternalTeamIdEquals(match.getTeamIdHome()).getSingleResult());
 				game.setTeamAway(Team.findTeamsByExternalTeamIdEquals(match.getTeamIdAway()).getSingleResult());
+				game.setExternalGameId(match.getMatchId());
 				game.persist();
 			}
 		} catch (ClientProtocolException e) {

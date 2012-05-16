@@ -85,7 +85,6 @@
 
 
 			<c:if test="${not empty game}">
-
 				<div class="ui-grid-b">
 					<div class="ui-block-a" style="text-align: center;">
 						<img
@@ -103,22 +102,72 @@
 					</div>
 				</div>
 				<!-- /grid-b -->
-
+				
+				<c:if test="${not game.betOpen}">
+					<h2><spring:message code="game_bets"/></h2>
+					
+					<c:if test="${not empty bets}">
+						<ul data-role="listview" data-inset="true" data-divider-theme="a">
+							<c:forEach items="${bets}" var="bet">
+								<c:if test="${empty betPointGroup || betPointGroup != bet.score}">
+									<c:set var="betPointGroup" value="${bet.score}"/>
+									<li data-role="list-divider"><spring:message code="bet_score_group_${bet.score}" text="${bet.score} POINTS" /></li>
+								</c:if>
+					
+								<spring:url value="/start/user/${bet.betUser.id}" var="user_url"/>
+								<li><a href="${user_url}">${bet.betUser.username}
+									<div class="ui-li-count bubbleGroup"> 
+										<spring:url value="/images/bet.png" var="bet_png"/>
+										<div class="ui-li-count">
+											<c:choose>
+												<c:when test="${bet.score > 0}">+ ${bet.score}</c:when>
+												<c:otherwise>0</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="ui-li-count"><img src="${bet_png}" class="left bubbleIcon"/> ${bet.scoreHome}:${bet.scoreAway}</div> 
+									</div>
+								</a></li>			
+							</c:forEach>
+						</ul>
+					</c:if>
+					
+					<c:if test="${empty bets}">
+						<p>No bets available for this game.</p>
+					</c:if>
+				</c:if>
 			</c:if>
-			<h2>Top 5</h2>
-
-			<ol data-role="listview" data-inset="true">
-				<li><a href="index.html">The Godfather<span
-						class="ui-li-count">100</span></a></li>
-				<li><a href="index.html">Inception<span class="ui-li-count">100</span></a></li>
-				<li><a href="index.html">The Good, the Bad and the Ugly<span
-						class="ui-li-count">100</span></a></li>
-				<li><a href="index.html">Pulp Fiction<span
-						class="ui-li-count">100</span></a></li>
-				<li><a href="index.html">Schindler's List<span
-						class="ui-li-count">100</span></a></li>
-			</ol>
-
+			
+			
+			<c:if test="${not empty betUser}">
+				<h2>User: ${betUser.username}</h2>
+				
+				<c:if test="${not empty bets}">
+					<h2><spring:message code="game_bets"/></h2>
+					
+					<ul data-role="listview" data-inset="true" data-divider-theme="a">
+					<c:forEach items="${bets}" var="bet">
+						<li>
+							<spring:message code="team_${fn:toLowerCase(fn:replace(bet.game.teamHome.name,' ','_'))}" text="${bet.game.teamHome.name}" /> -
+							<spring:message code="team_${fn:toLowerCase(fn:replace(bet.game.teamAway.name,' ','_'))}" text="${bet.game.teamAway.name}" />
+							<div class="ui-li-count bubbleGroup" style="margin-right: -38px;"> 
+								<spring:url value="/images/bet.png" var="bet_png"/>
+								<div class="ui-li-count">
+									<c:choose>
+										<c:when test="${bet.score > 0}">+ ${bet.score}</c:when>
+										<c:otherwise>0</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="ui-li-count"><img src="${bet_png}" class="left bubbleIcon"/> ${bet.scoreHome}:${bet.scoreAway}</div> 
+								<spring:url value="/images/game.png" var="game_png"/>
+								<div class="ui-li-count"><img src="${game_png}" class="left bubbleIcon"/> ${bet.game.scoreHome}:${bet.game.scoreAway}</div> 
+								<c:if test="${bet.game.gameStatus == 'RUNNING'}">
+									<div class="ui-li-count"><spring:message code="game_status_running" /></div> 
+								</c:if>
+							</div></li>	
+					</c:forEach>	
+					</ul>
+				</c:if>
+			</c:if>
 		</div>
 		<!-- /content -->
 	</div>

@@ -2,7 +2,6 @@ package eu.zomtec.em2012.domain;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
@@ -18,12 +17,13 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findGamesByGameGroup" })
+@RooJpaActiveRecord(finders = { "findGamesByGameGroup", "findGamesByKickOffLessThanEquals" })
 public class Game {
 
-    private static final int CLOSE_BET_BEFORE_GAME_IN_MINUTES = 10;
+    @Transient
+    public static final int CLOSE_BET_BEFORE_GAME_IN_MINUTES = 10;
 
-	@NotNull
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "MM")
     private Date kickOff;
@@ -51,24 +51,36 @@ public class Game {
     @NotNull
     @ManyToOne
     private GameGroup gameGroup;
-    
-    public static TypedQuery<Game> findGamesByGameGroupOrderByStart(GameGroup gameGroup) {
+
+    @NotNull
+    private Long externalGameId;
+
+    public static TypedQuery<eu.zomtec.em2012.domain.Game> findGamesByGameGroupOrderByStart(GameGroup gameGroup) {
         if (gameGroup == null) throw new IllegalArgumentException("The gameGroup argument is required");
         EntityManager em = entityManager();
         TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.gameGroup = :gameGroup ORDER BY o.gameStatus DESC, o.kickOff ASC", Game.class);
         q.setParameter("gameGroup", gameGroup);
         return q;
     }
-    
+
     @Transient
     public boolean isBetOpen() {
-    	final GregorianCalendar calendar = new GregorianCalendar();
-    	calendar.add(GregorianCalendar.MINUTE, CLOSE_BET_BEFORE_GAME_IN_MINUTES);
-    	return GameStatus.UPCOMMING.equals(gameStatus) && calendar.getTime().before(kickOff);
+        final GregorianCalendar calendar = new GregorianCalendar();
+        calendar.add(GregorianCalendar.MINUTE, CLOSE_BET_BEFORE_GAME_IN_MINUTES);
+        return GameStatus.UPCOMMING.equals(gameStatus) && calendar.getTime().before(kickOff);
     }
 
-	@Override
-	public String toString() {
-		return teamHome + " : " + teamAway;
-	}
+    @Override
+    public String toString() {
+        return teamHome.getName() + " : " + teamAway.getName();
+    }
+
+    public static TypedQuery<eu.zomtec.em2012.domain.Game> findGamesByKickOffLessThanEqualsAndNotFinished(Date kickOff) {
+        if (kickOff == null) throw new IllegalArgumentException("The kickOff argument is required");
+        EntityManager em = Game.entityManager();
+        TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.kickOff <= :kickOff AND o.gameStatus != :gameStatus", Game.class);
+        q.setParameter("kickOff", kickOff);
+        q.setParameter("gameStatus", GameStatus.FINISHED);
+        return q;
+    }
 }

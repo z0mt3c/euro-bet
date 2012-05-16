@@ -11,5 +11,6 @@
         <field:select field="gameStatus" id="c_eu_zomtec_em2012_domain_Game_gameStatus" items="${gamestatuses}" path="gamestatuses" required="true" z="maRSSZz9M/2JasUVGgvvW78OXKA="/>
         <field:datetime dateTimePattern="${game_lastscoreupdate_date_format}" field="lastScoreUpdate" id="c_eu_zomtec_em2012_domain_Game_lastScoreUpdate" z="d6RhM9Prw+mbMU7P+JJDVZ1+mX0="/>
         <field:select field="gameGroup" id="c_eu_zomtec_em2012_domain_Game_gameGroup" itemValue="id" items="${gamegroups}" path="/gamegroups" required="true" z="ybzW0LvdZ5C8nkp4ecUohBF30co="/>
+        <field:input field="externalGameId" id="c_eu_zomtec_em2012_domain_Game_externalGameId" required="true" validationMessageCode="field_invalid_integer" z="XsG7f1Y07Qh2DzoxeEAtXtWrvYE="/>
     </form:update>
 </div>
