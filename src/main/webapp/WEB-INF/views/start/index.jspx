@@ -3,6 +3,7 @@
 	xmlns:tiles="http://tiles.apache.org/tags-tiles"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
 	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
 
 <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
@@ -39,7 +40,7 @@
 
 		<div data-role="content">
 			<c:if test="${not empty gameGroups}">
-				<h2>Spielgruppen</h2>
+				<h2><spring:message code="game_groups"/></h2>
 
 				<ul data-role="listview" data-inset="true">
 					<c:forEach items="${gameGroups}" var="gameGroup">
@@ -51,10 +52,15 @@
 			</c:if>
 
 			<c:if test="${not empty gameGroup}">
-				<h2>${gameGroup.name}</h2>
+				<h2><spring:message code="game_group_${fn:toLowerCase(fn:replace(gameGroup.name,' ','_'))}" text="${gameGroup.name}" /></h2>
 
-				<ul data-role="listview" data-inset="true">
+				<ul data-role="listview" data-inset="true" data-divider-theme="a">
 					<c:forEach var="game" items="${games}">
+						<c:if test="${empty gameStatusGroup || gameStatusGroup != game.gameStatus}">
+							<c:set var="gameStatusGroup" value="${game.gameStatus}"/>
+							<li data-role="list-divider"><spring:message code="game_status_${fn:toLowerCase(game.gameStatus)}" text="${game.gameStatus}" /></li>
+						</c:if>
+					
 						<c:choose>
 							<c:when test="${game.betOpen}">
 								<tiles:insertTemplate template="/WEB-INF/snippets/game-list-item-open.jspx">

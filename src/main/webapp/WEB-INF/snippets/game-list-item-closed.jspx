@@ -3,6 +3,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:tiles="http://tiles.apache.org/tags-tiles"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
 	<tiles:importAttribute />
@@ -11,18 +12,21 @@
 
 	<c:choose>
 		<c:when test="${game.gameStatus == 'UPCOMMING'}">
-			<c:set var="dataTheme" value="b" />
+			<c:set var="dataTheme" value="" />
 		</c:when>
 		<c:when test="${game.gameStatus == 'RUNNING'}">
-			<c:set var="dataTheme" value="b" />
+			<c:set var="dataTheme" value="" />
 		</c:when>
 		<c:otherwise>
-			<c:set var="dataTheme" value="a" />
+			<c:set var="dataTheme" value="" />
 		</c:otherwise>
 	</c:choose>
 
 	<li data-theme="${dataTheme}"><a href="${gameUrl}">
-			<h1>${game.teamHome.name} - ${game.teamAway.name}</h1>
+			<h1>
+				<spring:message code="team_${fn:toLowerCase(fn:replace(game.teamHome.name,' ','_'))}" text="${game.teamHome.name}" /> -
+				<spring:message code="team_${fn:toLowerCase(fn:replace(game.teamAway.name,' ','_'))}" text="${game.teamAway.name}" />
+			</h1>
 			<p>
 				<fmt:formatDate value="${game.kickOff}" type="both"
 					timeStyle="short" dateStyle="short" />

@@ -27,12 +27,12 @@ public class LeagueService {
 	}
 
 	public String loadFeed() throws ClientProtocolException, IOException {
-		HttpClient httpClient = new DefaultHttpClient();
+		final HttpClient httpClient = new DefaultHttpClient();
 		
         try {
-            HttpGet httpget = new HttpGet(feedUrl);
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            String responseBody = httpClient.execute(httpget, responseHandler);
+            final HttpGet httpget = new HttpGet(feedUrl);
+            final ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            final String responseBody = httpClient.execute(httpget, responseHandler);
             return responseBody;
         } finally {
             // When HttpClient instance is no longer needed,
