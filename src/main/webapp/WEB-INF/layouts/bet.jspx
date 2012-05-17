@@ -4,6 +4,7 @@
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:sec="http://www.springframework.org/security/tags"
 	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
 
 <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
@@ -37,6 +38,37 @@
 </head>
 
 <body>
+<div data-role="page">
 	<tiles:insertAttribute name="body" ignore="true" />
+	
+		<spring:url value="/teamgroups" var="admin_url"/>
+		<spring:url value="/resources/j_spring_security_logout" var="logout_url"/>
+		<spring:url value="/start/index" var="games_url"/>
+		<spring:url value="/public/scores" var="scores_url"/>
+		<spring:url value="/public/news" var="news_url"/>
+		
+		<div data-role="footer" data-position="fixed">		
+			<div data-role="navbar">
+				<ul>
+					<li><a href="${news_url}" class="btnLogout" data-icon="info">News</a></li>
+					
+					<sec:authorize access="isAuthenticated()">
+						<li><a href="${games_url}" class="btnLogout" data-icon="home">Games</a></li>
+					</sec:authorize>
+					
+					<li><a href="${scores_url}" class="btnLogout" data-icon="star">Scores</a></li>
+					
+					<sec:authorize ifAllGranted="ROLE_ADMIN">
+						<li><a href="${admin_url}" rel="external" data-icon="gear">Admin</a></li>
+					</sec:authorize>
+					
+					<sec:authorize access="isAuthenticated()">
+						<li><a href="${logout_url}" rel="external" data-icon="delete">Logout</a></li>
+					</sec:authorize>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+</div>
 </body>
 </html>

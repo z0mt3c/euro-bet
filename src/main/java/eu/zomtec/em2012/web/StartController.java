@@ -1,5 +1,6 @@
 package eu.zomtec.em2012.web;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +31,6 @@ import eu.zomtec.em2012.manager.BetManager;
 @Controller
 public class StartController {
 	
-	private static final long DUMMY_USER_ID = 1L;
 	@Autowired
 	private BetManager betManager;
 
@@ -51,7 +51,7 @@ public class StartController {
     }
     
     @RequestMapping("games/{groupId}")
-    public ModelAndView games(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long groupId) {
+    public ModelAndView games(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long groupId, Principal principal) {
     	final GameGroup gameGroup = GameGroup.findGameGroup(groupId);
     	modelMap.put("gameGroup", gameGroup);
     	
@@ -59,14 +59,15 @@ public class StartController {
     	final List<Game> games = gamesQuery.getResultList();
     	modelMap.put("games", games);
     	
-    	final HashMap<Long, Bet> bets = betManager.getBetsForGames(DUMMY_USER_ID, games);
+    	final BetUser user = getUser(principal);
+    	final HashMap<Long, Bet> bets = betManager.getBetsForGames(user, games);
     	modelMap.put("bets", bets);
     	
     	return new ModelAndView("start/game-list", modelMap);
     }
-    
+
     @RequestMapping("game/{gameId}")
-    public ModelAndView game(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long gameId) {
+    public ModelAndView game(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long gameId, Principal principal) {
     	final Game game = Game.findGame(gameId);
     	modelMap.put("game", game);
     	
@@ -74,14 +75,20 @@ public class StartController {
     	final List<Bet> bets = betsQery.getResultList();
     	modelMap.put("bets", bets);
     	
+    	final BetUser user = getUser(principal);
+    	modelMap.put("myUser", user);
+    	
     	return new ModelAndView("start/game", modelMap);
     }
     
     @RequestMapping("user/{userId}")
-    public ModelAndView user(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long userId) {
+    public ModelAndView user(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long userId, Principal principal) {
     	final BetUser betUser = BetUser.findBetUser(userId);
     	modelMap.put("betUser", betUser);
     	modelMap.put("pageTitle", "User: "+betUser.getUsername());
+    	
+    	final BetUser user = getUser(principal);
+    	modelMap.put("myProfile", user.getId().equals(betUser.getId()));
     	
     	final TypedQuery<Bet> betsQery = Bet.findBetByUserOrderByKickOff(betUser);
     	final List<Bet> bets = betsQery.getResultList();
@@ -92,13 +99,20 @@ public class StartController {
     
     
     @RequestMapping(value="bet", method=RequestMethod.POST)
-    public @ResponseBody String bet(@RequestParam long gameId, @RequestParam Integer home, @RequestParam Integer away) {
+    public @ResponseBody String bet(@RequestParam long gameId, @RequestParam Integer home, @RequestParam Integer away, Principal principal) {
     	final Game game = Game.findGame(gameId);
     	
     	if (!game.isBetOpen()) {
     		return Boolean.FALSE.toString();
     	} else {
-    		return Boolean.valueOf(betManager.placeBet(DUMMY_USER_ID, gameId, home, away)).toString();
+        	final BetUser user = getUser(principal);
+    		return Boolean.valueOf(betManager.placeBet(user, gameId, home, away)).toString();
     	}
     }
+    
+	private BetUser getUser(Principal principal) {
+		final TypedQuery<BetUser> userQuery = BetUser.findBetUsersByUsernameEquals(principal.getName());
+    	final BetUser user = userQuery.getSingleResult();
+		return user;
+	}
 }

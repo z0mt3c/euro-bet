@@ -7,7 +7,6 @@
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
 
-	<div data-role="page">
 		<div data-role="header" data-position="fixed">
 			<h1>
 				<spring:message code="security_login_title" htmlEscape="false" />
@@ -65,5 +64,4 @@
 			    </fieldset>
 			</form>
 		</div>
-	</div>
 </jsp:root>

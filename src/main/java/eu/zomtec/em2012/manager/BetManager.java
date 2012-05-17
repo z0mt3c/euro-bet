@@ -15,8 +15,7 @@ import eu.zomtec.em2012.domain.Game;
 
 @Component
 public class BetManager {
-	public boolean placeBet(Long userId, Long gameId, Integer scoreHome, Integer scoreAway) {
-		final BetUser user = BetUser.findBetUser(userId);
+	public boolean placeBet(BetUser user, Long gameId, Integer scoreHome, Integer scoreAway) {
 		final Game game = Game.findGame(gameId);
 		
 		TypedQuery<Bet> betQuery = Bet.findBetByBetUserAndGame(user, game);
@@ -43,8 +42,7 @@ public class BetManager {
 		return true;
 	}
 
-	public HashMap<Long,Bet> getBetsForGames(long userId, List<Game> games) {
-		final BetUser user = BetUser.findBetUser(userId);
+	public HashMap<Long,Bet> getBetsForGames(BetUser user, List<Game> games) {
 		final TypedQuery<Bet> bets = Bet.findBetByBetUserAndGame(user, games);
 		final List<Bet> resultList = bets.getResultList();
 		final HashMap<Long, Bet> betMap = new HashMap<Long, Bet>(resultList.size());
