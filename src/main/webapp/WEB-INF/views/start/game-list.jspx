@@ -16,7 +16,7 @@
 
 	<div data-role="content">
 		<c:if test="${not empty gameGroup}">
-			<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<ul data-role="listview" data-inset="true" data-divider-theme="a" class="portFix">
 				<c:forEach var="game" items="${games}">
 					<c:if test="${empty gameStatusGroup || gameStatusGroup != game.gameStatus}">
 						<c:set var="gameStatusGroup" value="${game.gameStatus}"/>

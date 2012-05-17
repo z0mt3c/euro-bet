@@ -20,28 +20,29 @@
 	<spring:url value="/images/bet.png" var="bet_png"/>
 	<c:url value="game/${game.id}" var="gameUrl" />
 	<li>
-		<div style="float: right; margin-top: 10px;	${not empty bet?'':'display:none;'}" class="readBetContainer">
-			<a href="#" data-role="button" data-icon="gear" data-iconpos="notext" rel="external" class="editBet">Save</a>
-			<img src="${bet_png}" style="margin-top:12px;"/>
-			<span class="readOnlyBetScore">${scoreHome} : ${scoreAway}</span>
-		</div>
-		<div style="float: right; margin-top: 10px; ${empty bet?'':'display:none;'}" class="placeBetContainer">
-			<form class="betForm">
-			<input name="gameId" type="hidden" value="${game.id}" />
-				<input name="home" data-mini="true" value="${scoreHome}" size="2" maxlength="2"
-					class="inputBet" /><span>:</span><input name="away"
-					data-mini="true" value="${scoreAway}" size="2" maxlength="2" class="inputBet" /><a
-					href="#" data-role="button" data-icon="check"
-					data-iconpos="notext" rel="external" class="placeBet">Save</a>
-			</form>
-		</div>
-		<h1 style="display: inline-block;">
+		<h1>
 			<spring:message code="team_${fn:toLowerCase(fn:replace(game.teamHome.name,' ','_'))}" text="${game.teamHome.name}" /> -
 			<spring:message code="team_${fn:toLowerCase(fn:replace(game.teamAway.name,' ','_'))}" text="${game.teamAway.name}" /></h1>
-		<br />
-		<p style="display: inline-block;">
+		<p>
 			<fmt:formatDate value="${game.kickOff}" type="both" timeStyle="short"
 				dateStyle="short" />
 		</p>
+		<div class="clearfix betRoot">
+			<div style="${not empty bet?'':'display:none;'}" class="readBetContainer betContainer">
+				<a href="#" data-role="button" data-icon="gear" data-iconpos="notext" rel="external" class="editBet">Save</a>
+				<span class="readOnlyBetScore">${scoreHome} : ${scoreAway}</span>
+				<img src="${bet_png}" class="betImg"/>
+			</div>
+			<div style="${empty bet?'':'display:none;'}" class="placeBetContainer betContainer">
+				<form class="betForm">
+				<input name="gameId" type="hidden" value="${game.id}" />
+					<input name="home" data-mini="true" value="${scoreHome}" size="2" maxlength="2"
+						class="inputBet" /><span>:</span><input name="away"
+						data-mini="true" value="${scoreAway}" size="2" maxlength="2" class="inputBet" /><a
+						href="#" data-role="button" data-icon="check"
+						data-iconpos="notext" rel="external" class="placeBet">Save</a>
+				</form>
+			</div>
+		</div>
 	</li>
 </jsp:root>

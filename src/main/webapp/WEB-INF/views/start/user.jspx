@@ -42,7 +42,7 @@
 			<c:if test="${not empty bets}">
 				<h2><spring:message code="game_bets"/></h2>
 				
-				<ul data-role="listview" data-inset="true" data-divider-theme="a">
+				<ul data-role="listview" data-inset="true" data-divider-theme="a" class="portFix">
 				<c:forEach items="${bets}" var="bet">
 					<li>
 					<spring:url value="/start/game/${bet.game.id}" var="game_url"/>

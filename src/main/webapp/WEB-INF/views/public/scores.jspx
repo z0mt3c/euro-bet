@@ -17,8 +17,6 @@
 	<div data-role="content">
 		<p><spring:message code="score_board_description"/></p>
 		
-		<h2><spring:message code="score_boards"/></h2>
-		
 		<spring:url value="/public/scores/final" var="scores_final_url"/>
 		<spring:url value="/public/scores/temp" var="scores_temp_url"/>
 		
