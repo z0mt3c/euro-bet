@@ -47,7 +47,7 @@ public class StartController {
     public ModelAndView groups(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
     	final List<GameGroup> gameGroups = GameGroup.findAllGameGroupsBySortOrder();
     	modelMap.put("gameGroups", gameGroups);
-        return new ModelAndView("start/index", modelMap);
+        return new ModelAndView("start/group-list", modelMap);
     }
     
     @RequestMapping("games/{groupId}")
@@ -62,7 +62,7 @@ public class StartController {
     	final HashMap<Long, Bet> bets = betManager.getBetsForGames(DUMMY_USER_ID, games);
     	modelMap.put("bets", bets);
     	
-    	return new ModelAndView("start/index", modelMap);
+    	return new ModelAndView("start/game-list", modelMap);
     }
     
     @RequestMapping("game/{gameId}")
@@ -74,19 +74,20 @@ public class StartController {
     	final List<Bet> bets = betsQery.getResultList();
     	modelMap.put("bets", bets);
     	
-    	return new ModelAndView("start/index", modelMap);
+    	return new ModelAndView("start/game", modelMap);
     }
     
     @RequestMapping("user/{userId}")
     public ModelAndView user(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @PathVariable Long userId) {
     	final BetUser betUser = BetUser.findBetUser(userId);
     	modelMap.put("betUser", betUser);
+    	modelMap.put("pageTitle", "User: "+betUser.getUsername());
     	
     	final TypedQuery<Bet> betsQery = Bet.findBetByUserOrderByKickOff(betUser);
     	final List<Bet> bets = betsQery.getResultList();
     	modelMap.put("bets", bets);
     	
-    	return new ModelAndView("start/index", modelMap);
+    	return new ModelAndView("start/user", modelMap);
     }
     
     
@@ -95,7 +96,7 @@ public class StartController {
     	final Game game = Game.findGame(gameId);
     	
     	if (!game.isBetOpen()) {
-    		return Boolean.TRUE.toString();
+    		return Boolean.FALSE.toString();
     	} else {
     		return Boolean.valueOf(betManager.placeBet(DUMMY_USER_ID, gameId, home, away)).toString();
     	}

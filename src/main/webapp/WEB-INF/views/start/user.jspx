@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsp:root version="2.0" xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:tiles="http://tiles.apache.org/tags-tiles"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
+
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+		<h1>
+			<c:choose>
+				<c:when test="${empty pageTitle}">
+					<spring:message code="application_name" htmlEscape="false"/>
+				</c:when>
+				<c:otherwise>
+					${pageTitle}
+				</c:otherwise>
+			</c:choose>
+		</h1>
+	</div>
+	<!-- /header -->
+
+	<div data-role="content">
+		<c:if test="${not empty betUser}">
+			<h2>User: ${betUser.username}</h2>
+			
+			<c:if test="${not empty bets}">
+				<h2><spring:message code="game_bets"/></h2>
+				
+				<ul data-role="listview" data-inset="true" data-divider-theme="a">
+				<c:forEach items="${bets}" var="bet">
+					<li>
+						<spring:message code="team_${fn:toLowerCase(fn:replace(bet.game.teamHome.name,' ','_'))}" text="${bet.game.teamHome.name}" /> -
+						<spring:message code="team_${fn:toLowerCase(fn:replace(bet.game.teamAway.name,' ','_'))}" text="${bet.game.teamAway.name}" />
+						<div class="ui-li-count bubbleGroup" style="margin-right: -38px;"> 
+							<spring:url value="/images/bet.png" var="bet_png"/>
+							<div class="ui-li-count">
+								<c:choose>
+									<c:when test="${bet.score > 0}">+ ${bet.score}</c:when>
+									<c:otherwise>0</c:otherwise>
+								</c:choose>
+							</div>
+							<div class="ui-li-count"><img src="${bet_png}" class="left bubbleIcon"/> ${bet.scoreHome}:${bet.scoreAway}</div> 
+							<spring:url value="/images/game.png" var="game_png"/>
+							<div class="ui-li-count"><img src="${game_png}" class="left bubbleIcon"/> ${bet.game.scoreHome}:${bet.game.scoreAway}</div> 
+							<c:if test="${bet.game.gameStatus == 'RUNNING'}">
+								<div class="ui-li-count"><spring:message code="game_status_running" /></div> 
+							</c:if>
+						</div></li>	
+				</c:forEach>	
+				</ul>
+			</c:if>
+		</c:if>
+	</div>
+	<!-- /content -->
+</div>
+<!-- /page -->
+</jsp:root>
