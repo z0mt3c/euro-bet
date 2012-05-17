@@ -23,6 +23,8 @@ import eu.zomtec.em2012.domain.BetUser;
 import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameGroup;
 import eu.zomtec.em2012.manager.BetManager;
+import eu.zomtec.em2012.score.HighScore;
+import eu.zomtec.em2012.score.HighScoreService;
 
 /**
  * Should contain the start page later - now just for testing.
@@ -33,6 +35,9 @@ public class StartController {
 	
 	@Autowired
 	private BetManager betManager;
+	
+	@Autowired
+	private HighScoreService highScoreService;
 
     @RequestMapping("index")
     public ModelAndView index(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
@@ -67,12 +72,14 @@ public class StartController {
     	final Game game = Game.findGame(gameId);
     	modelMap.put("game", game);
     	
-    	final TypedQuery<Bet> betsQery = Bet.findBetByBetGameOrderByScoreType(game);
-    	final List<Bet> bets = betsQery.getResultList();
-    	modelMap.put("bets", bets);
-    	
     	final BetUser user = getUser(principal);
     	modelMap.put("myUser", user);
+    	
+    	if (!game.isBetOpen()) {
+        	final TypedQuery<Bet> betsQery = Bet.findBetByBetGameOrderByScoreType(game);
+        	final List<Bet> bets = betsQery.getResultList();
+        	modelMap.put("bets", bets);
+    	}
     	
     	return new ModelAndView("start/game", modelMap);
     }
@@ -89,6 +96,9 @@ public class StartController {
     	final TypedQuery<Bet> betsQery = Bet.findBetByUserOrderByKickOff(betUser);
     	final List<Bet> bets = betsQery.getResultList();
     	modelMap.put("bets", bets);
+    	
+    	final List<HighScore> highScoreTemp = highScoreService.getHighScoreTemp();
+    	modelMap.put("scores_temp", highScoreService.getHighScorePartForUser(user.getId(), 5, highScoreTemp));
     	
     	return new ModelAndView("start/user", modelMap);
     }

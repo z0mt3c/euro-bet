@@ -21,26 +21,26 @@
 			<h2><spring:message code="scores_final"/></h2>
 			<p><spring:message code="scores_final_description"/></p>
 			
-			<ol data-role="listview" data-inset="true">
+			<ul data-role="listview" data-inset="true">
 				<c:forEach items="${scores_final}" var="score">
 					<tiles:insertTemplate template="/WEB-INF/snippets/score-list-entry.jsp">
 						<tiles:putAttribute name="score" value="${score}"/>
 					</tiles:insertTemplate>
 				</c:forEach>	
-			</ol>
+			</ul>
 		</c:if>
 		
 		<c:if test="${not empty scores_temp}">
 			<h2><spring:message code="scores_temp"/></h2>
 			<p><spring:message code="scores_temp_description"/></p>
 			
-			<ol data-role="listview" data-inset="true">
+			<ul data-role="listview" data-inset="true">
 				<c:forEach items="${scores_temp}" var="score">
 					<tiles:insertTemplate template="/WEB-INF/snippets/score-list-entry.jsp">
 						<tiles:putAttribute name="score" value="${score}"/>
 					</tiles:insertTemplate>
 				</c:forEach>	
-			</ol>
+			</ul>
 		</c:if>
 	</div>
 	<!-- /content -->

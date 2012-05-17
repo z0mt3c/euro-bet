@@ -5,12 +5,27 @@
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:sec="http://www.springframework.org/security/tags"
 	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
 	<tiles:importAttribute />
-	<li>
-	<spring:url value="/start/user/${score.userId}" var="user_url"/>
+	
+	<c:if test="${score.username eq markUser}">
+	 	<c:set var="dataTheme" value="a"/>
+	</c:if>
+	
+	
+	<sec:authorize access="isAuthenticated()">
+		<sec:authentication property="principal.username" var="myUserName" />
+		<c:if test="${myUserName == score.username}">
+		 	<c:set var="dataTheme" value="e"/>
+		</c:if>
+	</sec:authorize>
+	
+	<li data-theme="${dataTheme}">
+		<spring:url value="/start/user/${score.userId}" var="user_url"/>
+		
 		<a href="${user_url}">
-			${score.username}<span class="ui-li-count">
+			${score.position}. ${score.username}<span class="ui-li-count">
 			<c:if test="${score.totalScore > 0}">
 				+ 
 			</c:if>

@@ -9,22 +9,13 @@
 
 	<div data-role="header" data-position="fixed">
 		<h1>
-			<c:choose>
-				<c:when test="${empty pageTitle}">
-					<spring:message code="application_name" htmlEscape="false"/>
-				</c:when>
-				<c:otherwise>
-					${pageTitle}
-				</c:otherwise>
-			</c:choose>
+			<spring:message code="game_group_${fn:toLowerCase(fn:replace(gameGroup.name,' ','_'))}" text="${gameGroup.name}" />
 		</h1>
 	</div>
 	<!-- /header -->
 
 	<div data-role="content">
 		<c:if test="${not empty gameGroup}">
-			<h2><spring:message code="game_group_${fn:toLowerCase(fn:replace(gameGroup.name,' ','_'))}" text="${gameGroup.name}" /></h2>
-
 			<ul data-role="listview" data-inset="true" data-divider-theme="a">
 				<c:forEach var="game" items="${games}">
 					<c:if test="${empty gameStatusGroup || gameStatusGroup != game.gameStatus}">

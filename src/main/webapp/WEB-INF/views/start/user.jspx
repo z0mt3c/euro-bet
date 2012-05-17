@@ -25,15 +25,31 @@
 		<c:if test="${not empty betUser}">
 			<h2>User: ${betUser.username}</h2>
 			
+			<c:if test="${not empty scores_temp}">
+				<h2><spring:message code="scores_temp"/></h2>
+				<p><spring:message code="scores_temp_description"/></p>
+				
+				<ul data-role="listview" data-inset="true">
+					<c:forEach items="${scores_temp}" var="score">
+						<tiles:insertTemplate template="/WEB-INF/snippets/score-list-entry.jsp">
+							<tiles:putAttribute name="score" value="${score}"/>
+							<tiles:putAttribute name="markUser" value="${betUser.username}"/>
+						</tiles:insertTemplate>
+					</c:forEach>	
+				</ul>
+			</c:if>
+		
 			<c:if test="${not empty bets}">
 				<h2><spring:message code="game_bets"/></h2>
 				
 				<ul data-role="listview" data-inset="true" data-divider-theme="a">
 				<c:forEach items="${bets}" var="bet">
 					<li>
+					<spring:url value="/start/game/${bet.game.id}" var="game_url"/>
+					<a href="${game_url}">
 						<spring:message code="team_${fn:toLowerCase(fn:replace(bet.game.teamHome.name,' ','_'))}" text="${bet.game.teamHome.name}" /> -
 						<spring:message code="team_${fn:toLowerCase(fn:replace(bet.game.teamAway.name,' ','_'))}" text="${bet.game.teamAway.name}" />
-						<div class="ui-li-count bubbleGroup" style="margin-right: -38px;"> 
+						<div class="ui-li-count bubbleGroup" style="margin-right: 0px;"> 
 							<spring:url value="/images/bet.png" var="bet_png"/>
 							<div class="ui-li-count">
 								<c:choose>
@@ -47,7 +63,9 @@
 							<c:if test="${bet.game.gameStatus == 'RUNNING'}">
 								<div class="ui-li-count"><spring:message code="game_status_running" /></div> 
 							</c:if>
-						</div></li>	
+						</div>
+					</a>
+					</li>	
 				</c:forEach>	
 				</ul>
 			</c:if>

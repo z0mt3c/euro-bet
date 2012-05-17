@@ -8,22 +8,15 @@
 	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
 
 	<div data-role="header" data-position="fixed">
+	<spring:url value="/images/em2012.png" var="em2012_url"/>
 		<h1>
-			<spring:message code="game_groups"/>
+			<spring:message code="register"/>
 		</h1>
 	</div>
 	<!-- /header -->
 
 	<div data-role="content">
-		<c:if test="${not empty gameGroups}">
-			<ul data-role="listview" data-inset="true">
-				<c:forEach items="${gameGroups}" var="gameGroup">
-					<tiles:insertTemplate template="/WEB-INF/snippets/group-list-item.jspx">
-						<tiles:putAttribute name="gameGroup" value="${gameGroup}"/>
-					</tiles:insertTemplate>
-				</c:forEach>
-			</ul>
-		</c:if>
+		<p>TODO</p>
 	</div>
 	<!-- /content -->
 </jsp:root>

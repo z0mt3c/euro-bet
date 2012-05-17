@@ -10,7 +10,7 @@
 	<div data-role="header" data-position="fixed">
 	<spring:url value="/images/em2012.png" var="em2012_url"/>
 		<h1>
-			News
+			<spring:message code="start"/>
 		</h1>
 	</div>
 	<!-- /header -->
@@ -22,17 +22,25 @@
 		<p class="block"><spring:message code="introduction" htmlEscape="false"/></p>
 		
 		<c:if test="${not empty news}">
-		<h2>News</h2>
-		<div data-role="collapsible-set" data-theme="a" data-content-theme="a">
-			<c:forEach var="newsItem" items="${news}" varStatus="status">
-				<div data-role="collapsible" data-collapsed="${status.first?'false':'true'}">
-					<h3><c:out escapeXml="false" value="${newsItem.title}"/> @ <fmt:formatDate value="${newsItem.creation}" type="both" timeStyle="short" dateStyle="short" /></h3>
-					<p><c:out escapeXml="false" value="${newsItem.text}"/></p>
-				</div>
-			</c:forEach>
-		</div>
+			<h2><spring:message code="news"/></h2>
+			<div data-role="collapsible-set" data-theme="a" data-content-theme="a">
+				<c:forEach var="newsItem" items="${news}" varStatus="status">
+					<div data-role="collapsible" data-collapsed="${status.first?'false':'true'}">
+						<h3><c:out escapeXml="false" value="${newsItem.title}"/> @ <fmt:formatDate value="${newsItem.creation}" type="both" timeStyle="short" dateStyle="short" /></h3>
+						<p><c:out escapeXml="false" value="${newsItem.text}"/></p>
+					</div>
+				</c:forEach>
+			</div>
 		</c:if>
 		
+		<h2><spring:message code="top5"/></h2>
+		<p>TODO</p>
+		
+		<h2><spring:message code="your_ranking"/></h2>
+		<p>TODO</p>
+		
+		<h2><spring:message code="upcomming_games"/></h2>
+		<p>TODO</p>
 	</div>
 	<!-- /content -->
 </jsp:root>

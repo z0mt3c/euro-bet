@@ -30,6 +30,11 @@ public class PublicController {
     	return "public/scores";
     }
     
+    @RequestMapping(value="/register")
+    public String register(ModelMap modelMap) {
+    	return "public/register";
+    }
+    
     @RequestMapping(value="/scores/temp")
     public String finalScores(ModelMap modelMap) {
     	final List<HighScore> finalScores = highScoreService.getHighScoreFinal(1000);

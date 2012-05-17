@@ -11,4 +11,8 @@
     <definition extends="bet" name="public/news">
         <put-attribute name="body" value="/WEB-INF/views/public/news.jspx"/>
     </definition>
+    
+    <definition extends="bet" name="public/register">
+        <put-attribute name="body" value="/WEB-INF/views/public/register.jspx"/>
+    </definition>
 </tiles-definitions>

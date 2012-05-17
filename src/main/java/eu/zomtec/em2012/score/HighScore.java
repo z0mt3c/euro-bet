@@ -1,6 +1,7 @@
 package eu.zomtec.em2012.score;
 
 public class HighScore {
+	private Integer position;
 	private String username;
 	private Integer totalScore;
 	private Long userId;
@@ -14,7 +15,7 @@ public class HighScore {
 	}
 
 	public Integer getTotalScore() {
-		return totalScore;
+		return totalScore == null ? 0 : totalScore;
 	}
 
 	public void setTotalScore(Integer totalScore) {
@@ -33,5 +34,13 @@ public class HighScore {
 	public String toString() {
 		return "HighScore [userId=" + userId + ", username=" + username
 				+ ", totalScore=" + totalScore + "]";
+	}
+
+	public Integer getPosition() {
+		return position;
+	}
+
+	public void setPosition(Integer position) {
+		this.position = position;
 	}
 }
