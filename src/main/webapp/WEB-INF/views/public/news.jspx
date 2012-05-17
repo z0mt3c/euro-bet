@@ -33,11 +33,36 @@
 			</div>
 		</c:if>
 		
-		<h2><spring:message code="top5"/></h2>
-		<p>TODO</p>
+		<c:if test="${not empty scores_temp}">
+			<h2><spring:message code="top5"/></h2>
+			<p><spring:message code="scores_temp_description"/></p>
+			
+			<ul data-role="listview" data-inset="true">
+				<c:forEach items="${scores_temp}" var="score" end="5">
+					<tiles:insertTemplate template="/WEB-INF/snippets/score-list-entry.jsp">
+						<tiles:putAttribute name="score" value="${score}"/>
+					</tiles:insertTemplate>
+				</c:forEach>	
+			</ul>
+			<spring:url value="/public/scores" var="scores_url"/>
+			<div style="text-align:right;">
+			<a href="${scores_url}"><spring:message code="more"/></a>
+			</div>
+		</c:if>
 		
-		<h2><spring:message code="your_ranking"/></h2>
-		<p>TODO</p>
+		
+		<c:if test="${not empty scores_temp_my}">
+			<h2><spring:message code="your_ranking"/></h2>
+			<p><spring:message code="scores_temp_description"/></p>
+			
+			<ul data-role="listview" data-inset="true">
+				<c:forEach items="${scores_temp}" var="score">
+					<tiles:insertTemplate template="/WEB-INF/snippets/score-list-entry.jsp">
+						<tiles:putAttribute name="score" value="${score}"/>
+					</tiles:insertTemplate>
+				</c:forEach>	
+			</ul>
+		</c:if>
 		
 		<h2><spring:message code="upcomming_games"/></h2>
 		<p>TODO</p>
