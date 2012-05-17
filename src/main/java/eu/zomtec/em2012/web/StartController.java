@@ -34,10 +34,6 @@ public class StartController {
 	@Autowired
 	private BetManager betManager;
 
-    @RequestMapping(method = RequestMethod.POST, value = "{id}")
-    public void post(@PathVariable Long id, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
-    }
-
     @RequestMapping("index")
     public ModelAndView index(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
     	return groups(modelMap, request, response);

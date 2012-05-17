@@ -3,13 +3,13 @@
 
 package eu.zomtec.em2012.domain;
 
-import eu.zomtec.em2012.domain.BetUser;
+import eu.zomtec.em2012.domain.News;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect BetUser_Roo_ToString {
+privileged aspect News_Roo_ToString {
     
-    public String BetUser.toString() {
+    public String News.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

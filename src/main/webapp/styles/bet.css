@@ -37,3 +37,14 @@ img.bubbleIcon {
 	margin-right: 4px;	
 	margin-left:-2px;
 }
+
+img.emLogo {
+	width: 90%; 
+	max-width:320px;
+	margin:auto; 
+}
+.center {
+	text-align: center;
+}
+
+.block {text-align: justify;}

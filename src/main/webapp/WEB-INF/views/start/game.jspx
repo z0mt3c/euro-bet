@@ -47,9 +47,11 @@
 				<c:if test="${not empty bets}">
 					<ul data-role="listview" data-inset="true" data-divider-theme="a">
 						<c:forEach items="${bets}" var="bet">
-							<c:if test="${empty betPointGroup || betPointGroup != bet.score}">
-								<c:set var="betPointGroup" value="${bet.score}"/>
-								<li data-role="list-divider"><spring:message code="bet_score_group_${bet.score}" text="${bet.score} POINTS" /></li>
+							<c:if test="${not empty bet.score}">
+								<c:if test="${empty betPointGroup || betPointGroup != bet.score}">
+									<c:set var="betPointGroup" value="${bet.score}"/>
+									<li data-role="list-divider"><spring:message code="bet_score_group_${bet.score}" text="${bet.score} POINTS" /></li>
+								</c:if>
 							</c:if>
 				
 							<spring:url value="/start/user/${bet.betUser.id}" var="user_url"/>

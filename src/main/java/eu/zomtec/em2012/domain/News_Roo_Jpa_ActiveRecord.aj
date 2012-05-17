@@ -3,74 +3,73 @@
 
 package eu.zomtec.em2012.domain;
 
+import eu.zomtec.em2012.domain.News;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect TeamGroup_Roo_Jpa_ActiveRecord {
+privileged aspect News_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
-    transient EntityManager TeamGroup.entityManager;
+    transient EntityManager News.entityManager;
     
-    public static final EntityManager TeamGroup.entityManager() {
-        EntityManager em = new TeamGroup().entityManager;
+    public static final EntityManager News.entityManager() {
+        EntityManager em = new News().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long TeamGroup.countTeamGroups() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM TeamGroup o", Long.class).getSingleResult();
+    public static long News.countNews() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM News o", Long.class).getSingleResult();
     }
     
-    public static List<TeamGroup> TeamGroup.findAllTeamGroups() {
-        return entityManager().createQuery("SELECT o FROM TeamGroup o", TeamGroup.class).getResultList();
+    public static List<News> News.findAllNews() {
+        return entityManager().createQuery("SELECT o FROM News o", News.class).getResultList();
     }
     
-    public static TeamGroup TeamGroup.findTeamGroup(Long id) {
+    public static News News.findNews(Long id) {
         if (id == null) return null;
-        return entityManager().find(TeamGroup.class, id);
+        return entityManager().find(News.class, id);
     }
     
-    public static List<TeamGroup> TeamGroup.findTeamGroupEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM TeamGroup o", TeamGroup.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<News> News.findNewsEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM News o", News.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional
-    public void TeamGroup.persist() {
+    public void News.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void TeamGroup.remove() {
+    public void News.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            TeamGroup attached = TeamGroup.findTeamGroup(this.id);
+            News attached = News.findNews(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void TeamGroup.flush() {
+    public void News.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void TeamGroup.clear() {
+    public void News.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public TeamGroup TeamGroup.merge() {
+    public News News.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        TeamGroup merged = this.entityManager.merge(this);
+        News merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }

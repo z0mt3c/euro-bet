@@ -3,15 +3,11 @@
 
 package eu.zomtec.em2012.domain;
 
+import eu.zomtec.em2012.domain.News;
+import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect TeamGroup_Roo_JavaBean {
+privileged aspect News_Roo_Configurable {
     
-    public String TeamGroup.getName() {
-        return this.name;
-    }
-    
-    public void TeamGroup.setName(String name) {
-        this.name = name;
-    }
+    declare @type: News: @Configurable;
     
 }

@@ -3,6 +3,7 @@
 
 package eu.zomtec.em2012.domain;
 
+import eu.zomtec.em2012.domain.News;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,32 +11,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
-privileged aspect TeamGroup_Roo_Jpa_Entity {
+privileged aspect News_Roo_Jpa_Entity {
     
-    declare @type: TeamGroup: @Entity;
+    declare @type: News: @Entity;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long TeamGroup.id;
+    private Long News.id;
     
     @Version
     @Column(name = "version")
-    private Integer TeamGroup.version;
+    private Integer News.version;
     
-    public Long TeamGroup.getId() {
+    public Long News.getId() {
         return this.id;
     }
     
-    public void TeamGroup.setId(Long id) {
+    public void News.setId(Long id) {
         this.id = id;
     }
     
-    public Integer TeamGroup.getVersion() {
+    public Integer News.getVersion() {
         return this.version;
     }
     
-    public void TeamGroup.setVersion(Integer version) {
+    public void News.setVersion(Integer version) {
         this.version = version;
     }
     

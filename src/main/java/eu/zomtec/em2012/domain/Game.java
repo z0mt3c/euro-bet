@@ -2,6 +2,7 @@ package eu.zomtec.em2012.domain;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
@@ -10,13 +11,14 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooToString
+@RooToString()
 @RooJpaActiveRecord(finders = { "findGamesByGameGroup", "findGamesByKickOffLessThanEquals" })
 public class Game {
 
@@ -70,11 +72,6 @@ public class Game {
         return GameStatus.UPCOMMING.equals(gameStatus) && calendar.getTime().before(kickOff);
     }
 
-    @Override
-    public String toString() {
-        return teamHome.getName() + " : " + teamAway.getName();
-    }
-
     public static TypedQuery<eu.zomtec.em2012.domain.Game> findGamesByKickOffLessThanEqualsAndNotFinished(Date kickOff) {
         if (kickOff == null) throw new IllegalArgumentException("The kickOff argument is required");
         EntityManager em = Game.entityManager();
@@ -82,5 +79,10 @@ public class Game {
         q.setParameter("kickOff", kickOff);
         q.setParameter("gameStatus", GameStatus.FINISHED);
         return q;
+    }
+    
+    @Override
+    public String toString() {
+		return teamHome.toString() + " : " + teamAway.toString() + "(" + getId() + ")";
     }
 }

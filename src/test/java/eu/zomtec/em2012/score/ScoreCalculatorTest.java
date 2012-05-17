@@ -13,7 +13,6 @@ import eu.zomtec.em2012.domain.GameStatus;
 public class ScoreCalculatorTest {
 	private ScoreCalculator scoreCalculator = new ScoreCalculator();
 	
-	
 	@Test
 	public void testBetUpdate() {
 		final Game game = new Game();

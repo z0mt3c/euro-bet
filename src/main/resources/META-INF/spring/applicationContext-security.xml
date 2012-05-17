@@ -8,11 +8,13 @@
     <http auto-config="true" use-expressions="true">
         <form-login login-processing-url="/resources/j_spring_security_check" login-page="/login" authentication-failure-url="/login?login_error=t" />
         <logout logout-url="/resources/j_spring_security_logout" />
+        
         <!-- Configure these elements to secure URIs in your application -->
         <intercept-url pattern="/bets/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/betusers/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/betuserroles/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/games/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/news/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/gamegroups/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/teams/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/teamgroups/**" access="hasRole('ROLE_ADMIN')" />

@@ -3,7 +3,6 @@
 
 package eu.zomtec.em2012.domain;
 
-import eu.zomtec.em2012.domain.GameGroup;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 

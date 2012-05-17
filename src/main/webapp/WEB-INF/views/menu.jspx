@@ -33,6 +33,11 @@
         </menu:category>
         <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
             <menu:item id="i_controller__startindex_id" messageCode="global_generic" url="/start/index" z="pDVBjkztM24JcvodGD4//gEAz4o="/>
+            <menu:item id="i_controller__publicindex_id" messageCode="global_generic" url="/public/index" z="pQ1/bCC9eSkj/R1yUF3Xo1GqmUk="/>
+        </menu:category>
+        <menu:category id="c_news" z="/GYP5OCuHDR51pEBl2hXSgh9Kzs=">
+            <menu:item id="i_news_new" messageCode="global_menu_new" url="/news?form" z="KKGmhlBtoqXdUbIsLPG2pR5jcbw="/>
+            <menu:item id="i_news_list" messageCode="global_menu_list" url="/news?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Z3jXJYPsEw3tWVe0eJEvD8n+vQg="/>
         </menu:category>
     </menu:menu>
 </div>

@@ -6,7 +6,9 @@ package eu.zomtec.em2012.web;
 import eu.zomtec.em2012.domain.Bet;
 import eu.zomtec.em2012.domain.BetUser;
 import eu.zomtec.em2012.domain.BetUserRole;
+import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameGroup;
+import eu.zomtec.em2012.domain.News;
 import eu.zomtec.em2012.domain.Team;
 import eu.zomtec.em2012.domain.TeamGroup;
 import eu.zomtec.em2012.web.ApplicationConversionServiceFactoryBean;
@@ -90,6 +92,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Game, String> ApplicationConversionServiceFactoryBean.getGameToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<eu.zomtec.em2012.domain.Game, java.lang.String>() {
+            public String convert(Game game) {
+                return new StringBuilder().append(game.getKickOff()).append(" ").append(game.getScoreHome()).append(" ").append(game.getScoreAway()).append(" ").append(game.getLastScoreUpdate()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Game> ApplicationConversionServiceFactoryBean.getIdToGameConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, eu.zomtec.em2012.domain.Game>() {
+            public eu.zomtec.em2012.domain.Game convert(java.lang.Long id) {
+                return Game.findGame(id);
+            }
+        };
+    }
+    
+    public Converter<String, Game> ApplicationConversionServiceFactoryBean.getStringToGameConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, eu.zomtec.em2012.domain.Game>() {
+            public eu.zomtec.em2012.domain.Game convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Game.class);
+            }
+        };
+    }
+    
     public Converter<GameGroup, String> ApplicationConversionServiceFactoryBean.getGameGroupToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<eu.zomtec.em2012.domain.GameGroup, java.lang.String>() {
             public String convert(GameGroup gameGroup) {
@@ -110,6 +136,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, eu.zomtec.em2012.domain.GameGroup>() {
             public eu.zomtec.em2012.domain.GameGroup convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), GameGroup.class);
+            }
+        };
+    }
+    
+    public Converter<News, String> ApplicationConversionServiceFactoryBean.getNewsToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<eu.zomtec.em2012.domain.News, java.lang.String>() {
+            public String convert(News news) {
+                return new StringBuilder().append(news.getTitle()).append(" ").append(news.getText()).append(" ").append(news.getCreation()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, News> ApplicationConversionServiceFactoryBean.getIdToNewsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, eu.zomtec.em2012.domain.News>() {
+            public eu.zomtec.em2012.domain.News convert(java.lang.Long id) {
+                return News.findNews(id);
+            }
+        };
+    }
+    
+    public Converter<String, News> ApplicationConversionServiceFactoryBean.getStringToNewsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, eu.zomtec.em2012.domain.News>() {
+            public eu.zomtec.em2012.domain.News convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), News.class);
             }
         };
     }
@@ -172,9 +222,15 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getBetUserRoleToStringConverter());
         registry.addConverter(getIdToBetUserRoleConverter());
         registry.addConverter(getStringToBetUserRoleConverter());
+        registry.addConverter(getGameToStringConverter());
+        registry.addConverter(getIdToGameConverter());
+        registry.addConverter(getStringToGameConverter());
         registry.addConverter(getGameGroupToStringConverter());
         registry.addConverter(getIdToGameGroupConverter());
         registry.addConverter(getStringToGameGroupConverter());
+        registry.addConverter(getNewsToStringConverter());
+        registry.addConverter(getIdToNewsConverter());
+        registry.addConverter(getStringToNewsConverter());
         registry.addConverter(getTeamToStringConverter());
         registry.addConverter(getIdToTeamConverter());
         registry.addConverter(getStringToTeamConverter());

@@ -3,12 +3,12 @@ package eu.zomtec.em2012.domain;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooToString
 @RooJpaActiveRecord(finders = { "findTeamsByExternalTeamIdEquals" })
 public class Team {
 
@@ -29,5 +29,10 @@ public class Team {
         this.name = name;
         this.teamGroup = teamGroup;
         this.externalTeamId = externalTeamId;
+    }
+    
+    @Override
+    public String toString() {
+		return name + "(" + getId() + ")";
     }
 }
