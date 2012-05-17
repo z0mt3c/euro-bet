@@ -25,4 +25,7 @@ public class BetUser {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<BetUserRole> roles = new HashSet<BetUserRole>();
+
+    @NotNull
+    private Boolean enabled;
 }

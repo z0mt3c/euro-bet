@@ -6,5 +6,6 @@
         <field:display field="username" id="s_eu_zomtec_em2012_domain_BetUser_username" object="${betuser}" z="cf8G+L1WxDLYJadqVzA1vPGHA2w="/>
         <field:display field="password" id="s_eu_zomtec_em2012_domain_BetUser_password" object="${betuser}" z="T5UJcjIjwCR89WveyfcTRgqaJco="/>
         <field:display field="roles" id="s_eu_zomtec_em2012_domain_BetUser_roles" object="${betuser}" z="qGUK5fA+dXxlrqauEfom6kgwgoU="/>
+        <field:display field="enabled" id="s_eu_zomtec_em2012_domain_BetUser_enabled" object="${betuser}" z="iv/CyjM0HzzmgINGeuMQ+fTF6xQ="/>
     </page:show>
 </div>

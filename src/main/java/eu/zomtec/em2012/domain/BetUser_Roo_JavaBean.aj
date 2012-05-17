@@ -33,4 +33,12 @@ privileged aspect BetUser_Roo_JavaBean {
         this.roles = roles;
     }
     
+    public Boolean BetUser.getEnabled() {
+        return this.enabled;
+    }
+    
+    public void BetUser.setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+    
 }

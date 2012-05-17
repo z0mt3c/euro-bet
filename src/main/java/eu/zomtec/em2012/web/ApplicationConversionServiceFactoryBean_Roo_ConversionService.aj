@@ -6,7 +6,6 @@ package eu.zomtec.em2012.web;
 import eu.zomtec.em2012.domain.Bet;
 import eu.zomtec.em2012.domain.BetUser;
 import eu.zomtec.em2012.domain.BetUserRole;
-import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameGroup;
 import eu.zomtec.em2012.domain.Team;
 import eu.zomtec.em2012.domain.TeamGroup;
@@ -87,30 +86,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, eu.zomtec.em2012.domain.BetUserRole>() {
             public eu.zomtec.em2012.domain.BetUserRole convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), BetUserRole.class);
-            }
-        };
-    }
-    
-    public Converter<Game, String> ApplicationConversionServiceFactoryBean.getGameToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<eu.zomtec.em2012.domain.Game, java.lang.String>() {
-            public String convert(Game game) {
-                return new StringBuilder().append(game.getKickOff()).append(" ").append(game.getScoreHome()).append(" ").append(game.getScoreAway()).append(" ").append(game.getLastScoreUpdate()).toString();
-            }
-        };
-    }
-    
-    public Converter<Long, Game> ApplicationConversionServiceFactoryBean.getIdToGameConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, eu.zomtec.em2012.domain.Game>() {
-            public eu.zomtec.em2012.domain.Game convert(java.lang.Long id) {
-                return Game.findGame(id);
-            }
-        };
-    }
-    
-    public Converter<String, Game> ApplicationConversionServiceFactoryBean.getStringToGameConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, eu.zomtec.em2012.domain.Game>() {
-            public eu.zomtec.em2012.domain.Game convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Game.class);
             }
         };
     }
@@ -197,9 +172,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getBetUserRoleToStringConverter());
         registry.addConverter(getIdToBetUserRoleConverter());
         registry.addConverter(getStringToBetUserRoleConverter());
-        registry.addConverter(getGameToStringConverter());
-        registry.addConverter(getIdToGameConverter());
-        registry.addConverter(getStringToGameConverter());
         registry.addConverter(getGameGroupToStringConverter());
         registry.addConverter(getIdToGameGroupConverter());
         registry.addConverter(getStringToGameGroupConverter());

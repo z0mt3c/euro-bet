@@ -12,4 +12,9 @@ public class BetUserRole {
 
     @NotNull
     private String name;
+
+	public BetUserRole(String name) {
+		super();
+		this.name = name;
+	}
 }

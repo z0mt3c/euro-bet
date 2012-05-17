@@ -16,6 +16,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import eu.zomtec.em2012.domain.BetUser;
+import eu.zomtec.em2012.domain.BetUserRole;
 import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameGroup;
 import eu.zomtec.em2012.domain.GameStatus;
@@ -51,6 +53,18 @@ public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> 
 	}
 
 	private void init() {
+		final BetUserRole roleAdmin = new BetUserRole("ROLE_ADMIN");
+		roleAdmin.persist();
+		
+		final BetUser admin = new BetUser();
+		admin.setUsername("admin");
+		admin.setEnabled(true);
+		admin.setPassword("8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918");
+		final HashSet<BetUserRole> roles = new HashSet<BetUserRole>(1);
+		roles.add(roleAdmin);
+		admin.setRoles(roles);
+		admin.persist();
+		
 		TeamGroup teamGroupA = new TeamGroup("A");
 		TeamGroup teamGroupB = new TeamGroup("B");
 		TeamGroup teamGroupC = new TeamGroup("C");
@@ -71,7 +85,7 @@ public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> 
 		Team niederlande = new Team("Niederlande",teamGroupB, 936L);
 		Team spanien = new Team("Spanien",teamGroupC, 932L);
 		Team england = new Team("England",teamGroupD, 946L);
-		Team daenemark = new Team("D\u00e4nemark",teamGroupB, 931L);
+		Team daenemark = new Team("Daenemark",teamGroupB, 931L);
 		Team frankreich = new Team("Frankreich",teamGroupD, 928L);
 		Team griechenland = new Team("Griechenland",teamGroupA, 1306L);
 		Team russland = new Team("Russland",teamGroupA, 1335L);

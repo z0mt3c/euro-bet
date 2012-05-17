@@ -24,6 +24,10 @@ privileged aspect BetUserRole_Roo_Jpa_Entity {
     @Column(name = "version")
     private Integer BetUserRole.version;
     
+    public BetUserRole.new() {
+        super();
+    }
+
     public Long BetUserRole.getId() {
         return this.id;
     }
