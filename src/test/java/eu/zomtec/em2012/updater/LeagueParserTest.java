@@ -36,7 +36,7 @@ public class LeagueParserTest {
 		
 		Assert.assertEquals(new Long(107L), league.getLeagueId());
 		Assert.assertTrue(league.isTournament());
-		Assert.assertEquals("Sat Apr 28 00:31:50 GMT+07:00 2012", league.getTimestamp().toString());
+		Assert.assertEquals(1335547910000L, league.getTimestamp().getTime());
 	}
 	
 	@Test
@@ -58,6 +58,6 @@ public class LeagueParserTest {
 		Assert.assertEquals(1317L, match.getTeamIdHome().longValue());
 		Assert.assertEquals(1306L, match.getTeamIdAway().longValue());
 		Assert.assertEquals("Gruppe A", match.getTournamentGroup());
-		Assert.assertEquals("Fri Jun 08 23:00:00 GMT+07:00 2012", match.getStartTime().toString());
+		Assert.assertEquals(1339171200000L, match.getStartTime().getTime());
 	}
 }

@@ -36,12 +36,6 @@ public class LeagueServiceTest {
 		Assert.assertEquals(TEST_URL, leagueService.getFeedUrl());
 	}
 	
-	@Test 
-	public void testFeedLoad() throws ClientProtocolException, IOException {
-		Assert.assertEquals(jsonText, leagueService.loadFeed());
-		Assert.assertEquals(jsonText, leagueService.loadFeed());
-	}
-	
 	@Test
 	public void testLoadAndParse() throws ClientProtocolException, IOException, JSONException, ParseException {
 		final League league = leagueService.loadLeague();

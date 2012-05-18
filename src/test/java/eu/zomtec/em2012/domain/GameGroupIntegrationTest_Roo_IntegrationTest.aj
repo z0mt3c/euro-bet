@@ -8,6 +8,7 @@ import eu.zomtec.em2012.domain.GameGroupDataOnDemand;
 import eu.zomtec.em2012.domain.GameGroupIntegrationTest;
 import java.util.List;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,17 +106,4 @@ privileged aspect GameGroupIntegrationTest_Roo_IntegrationTest {
         obj.flush();
         Assert.assertNotNull("Expected 'GameGroup' identifier to no longer be null", obj.getId());
     }
-    
-    @Test
-    public void GameGroupIntegrationTest.testRemove() {
-        GameGroup obj = dod.getRandomGameGroup();
-        Assert.assertNotNull("Data on demand for 'GameGroup' failed to initialize correctly", obj);
-        Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'GameGroup' failed to provide an identifier", id);
-        obj = GameGroup.findGameGroup(id);
-        obj.remove();
-        obj.flush();
-        Assert.assertNull("Failed to remove 'GameGroup' with identifier '" + id + "'", GameGroup.findGameGroup(id));
-    }
-    
 }

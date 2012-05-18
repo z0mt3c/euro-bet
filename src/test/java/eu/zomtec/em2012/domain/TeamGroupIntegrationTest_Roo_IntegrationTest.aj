@@ -8,6 +8,7 @@ import eu.zomtec.em2012.domain.TeamGroupDataOnDemand;
 import eu.zomtec.em2012.domain.TeamGroupIntegrationTest;
 import java.util.List;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,18 +105,6 @@ privileged aspect TeamGroupIntegrationTest_Roo_IntegrationTest {
         obj.persist();
         obj.flush();
         Assert.assertNotNull("Expected 'TeamGroup' identifier to no longer be null", obj.getId());
-    }
-    
-    @Test
-    public void TeamGroupIntegrationTest.testRemove() {
-        TeamGroup obj = dod.getRandomTeamGroup();
-        Assert.assertNotNull("Data on demand for 'TeamGroup' failed to initialize correctly", obj);
-        Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'TeamGroup' failed to provide an identifier", id);
-        obj = TeamGroup.findTeamGroup(id);
-        obj.remove();
-        obj.flush();
-        Assert.assertNull("Failed to remove 'TeamGroup' with identifier '" + id + "'", TeamGroup.findTeamGroup(id));
     }
     
 }

@@ -8,6 +8,7 @@ import eu.zomtec.em2012.domain.Bet;
 import eu.zomtec.em2012.domain.BetScoreType;
 import eu.zomtec.em2012.domain.BetStatus;
 import eu.zomtec.em2012.domain.Game;
+import eu.zomtec.em2012.domain.GameGroup;
 import eu.zomtec.em2012.domain.GameStatus;
 
 public class ScoreCalculatorTest {
@@ -19,6 +20,7 @@ public class ScoreCalculatorTest {
 		game.setScoreHome(1);
 		game.setScoreAway(1);
 		game.setGameStatus(GameStatus.RUNNING);
+		game.setGameGroup(new GameGroup());
 		
 		final Bet bet = new Bet();
 		bet.setScoreHome(1);
@@ -43,11 +45,32 @@ public class ScoreCalculatorTest {
 	}
 	
 	@Test
+	public void testBetUpdateFactor() {
+		final Game game = new Game();
+		game.setScoreHome(1);
+		game.setScoreAway(1);
+		game.setGameStatus(GameStatus.RUNNING);
+		final GameGroup gameGroup = new GameGroup();
+		gameGroup.setFactor(4);
+		game.setGameGroup(gameGroup);
+		
+		final Bet bet = new Bet();
+		bet.setScoreHome(1);
+		bet.setScoreAway(1);
+		
+		scoreCalculator.reviewBet(game, bet);
+		Assert.assertEquals(BetScoreType.SCORE_MATCH, bet.getScoreType());
+		Assert.assertEquals(Integer.valueOf(BetScoreType.SCORE_MATCH.getPoints()*4), bet.getScore());
+		Assert.assertEquals(BetStatus.SCORE_TEMP, bet.getBetStatus());
+	}
+	
+	@Test
 	public void testDraw() {
 		final Game game = new Game();
 		game.setScoreHome(1);
 		game.setScoreAway(1);
 		game.setGameStatus(GameStatus.RUNNING);
+		game.setGameGroup(new GameGroup());
 		
 		final Bet bet = new Bet();
 
@@ -73,6 +96,7 @@ public class ScoreCalculatorTest {
 		final Game game = new Game();
 		game.setScoreHome(5);
 		game.setScoreAway(1);
+		game.setGameGroup(new GameGroup());
 		
 		final Bet bet = new Bet();
 		
@@ -102,6 +126,7 @@ public class ScoreCalculatorTest {
 		final Game game = new Game();
 		game.setScoreHome(4);
 		game.setScoreAway(6);
+		game.setGameGroup(new GameGroup());
 		
 		final Bet bet = new Bet();
 		

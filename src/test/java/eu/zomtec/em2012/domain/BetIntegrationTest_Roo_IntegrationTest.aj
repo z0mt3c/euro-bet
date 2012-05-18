@@ -8,6 +8,7 @@ import eu.zomtec.em2012.domain.BetDataOnDemand;
 import eu.zomtec.em2012.domain.BetIntegrationTest;
 import java.util.List;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,17 +106,4 @@ privileged aspect BetIntegrationTest_Roo_IntegrationTest {
         obj.flush();
         Assert.assertNotNull("Expected 'Bet' identifier to no longer be null", obj.getId());
     }
-    
-    @Test
-    public void BetIntegrationTest.testRemove() {
-        Bet obj = dod.getRandomBet();
-        Assert.assertNotNull("Data on demand for 'Bet' failed to initialize correctly", obj);
-        Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'Bet' failed to provide an identifier", id);
-        obj = Bet.findBet(id);
-        obj.remove();
-        obj.flush();
-        Assert.assertNull("Failed to remove 'Bet' with identifier '" + id + "'", Bet.findBet(id));
-    }
-    
 }
