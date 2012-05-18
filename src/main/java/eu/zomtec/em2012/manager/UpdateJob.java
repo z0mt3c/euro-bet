@@ -35,6 +35,13 @@ public class UpdateJob {
 	@Autowired
 	private ScoreCalculator scoreCalculator;
 	
+	// every day at midnight
+	@Scheduled(cron="0 0 0 * * ?")
+	@Async
+	public void updateTeams() throws ClientProtocolException, IOException, JSONException, ParseException {
+		
+	}
+	
 	@Scheduled(fixedRate=15000)
 	@Async
 	public void process() throws ClientProtocolException, IOException, JSONException, ParseException {
@@ -96,7 +103,15 @@ public class UpdateJob {
 	}
 	
 	private void validateMatchVsGame(Match match, Game game) {
-		// throw exception when ids dont match!
+		final Long teamAway = game.getTeamAway().getExternalTeamId();
+		if (!teamAway.equals(match.getTeamIdAway())) {
+			throw new RuntimeException("Team-IDs don't match for Game "+game.getId());
+		} 
+		
+		final Long teamHome = game.getTeamHome().getExternalTeamId();
+		if (!teamHome.equals(match.getTeamIdHome())) {
+			throw new RuntimeException("Team-IDs don't match for Game "+game.getId());
+		} 
 	}
 
 	private GameStatus getGameStatusForMatchStatus(MatchStatus matchStatus) {
