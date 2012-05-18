@@ -7,7 +7,9 @@
         then be used within application context files in the form of
         ${propertyKey}.
     -->
-    <context:property-placeholder location="classpath*:META-INF/spring/*.properties"/>
+	<context:property-placeholder
+		ignore-resource-not-found="true"
+		location="classpath*:META-INF/spring/*.properties,/opt/tomcat/conf/appconf/em2012.properties" />
     <!--
         Turn on AspectJ @Configurable support. As a result, any time you
         instantiate an object, Spring will attempt to perform dependency
@@ -70,4 +72,12 @@
     </bean>
     
     <import resource="scheduler.xml"/>
+    
+    <bean class="eu.zomtec.em2012.updater.LeagueService" id="leagueService">
+    	<property name="feedUrl" value="${league.feed}"/>
+    </bean>
+    
+    <bean class="eu.zomtec.em2012.Bootstrapper">
+    	<property name="bootstrap" value="${bootstrap}" />
+    </bean>
 </beans>

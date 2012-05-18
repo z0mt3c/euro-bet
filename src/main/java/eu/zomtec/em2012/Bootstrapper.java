@@ -16,8 +16,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import antlr.StringUtils;
-
 import eu.zomtec.em2012.domain.BetUser;
 import eu.zomtec.em2012.domain.BetUserRole;
 import eu.zomtec.em2012.domain.Game;
@@ -29,12 +27,13 @@ import eu.zomtec.em2012.updater.League;
 import eu.zomtec.em2012.updater.LeagueService;
 import eu.zomtec.em2012.updater.Match;
 
-@Component
 public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> {
 	private static final Logger LOG = Logger.getLogger(Bootstrapper.class);
 	
 	@Autowired
 	private LeagueService leagueService;
+	
+	private boolean bootstrap = true;
 
 	@Override
 	@Transactional
@@ -63,6 +62,7 @@ public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> 
 		final BetUser admin = new BetUser();
 		admin.setUsername("Timo");
 		admin.setEnabled(true);
+		admin.setEmail("timo.behrmann@gmail.com");
 		admin.setPassword("65ef8843ea0e55ef42793359eddc670cf66f5d5a1e91f1381de6ef1d0b2e043b");
 		
 		final HashSet<BetUserRole> roles = new HashSet<BetUserRole>(1);
@@ -170,5 +170,13 @@ public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean isBootstrap() {
+		return bootstrap;
+	}
+
+	public void setBootstrap(boolean bootstrap) {
+		this.bootstrap = bootstrap;
 	}
 }

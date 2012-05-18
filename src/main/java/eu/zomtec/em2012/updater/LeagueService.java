@@ -10,9 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
-import org.springframework.stereotype.Component;
 
-@Component
 public class LeagueService {
 	private LeagueParser leagueParser = new LeagueParser();
 	
