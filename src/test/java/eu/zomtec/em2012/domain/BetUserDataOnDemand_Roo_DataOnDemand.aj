@@ -46,7 +46,7 @@ privileged aspect BetUserDataOnDemand_Roo_DataOnDemand {
     public void BetUserDataOnDemand.setUsername(BetUser obj, int index) {
         String username = "username_" + index;
         if (username.length() > 30) {
-            username = username.substring(0, 30);
+            username = new Random().nextInt(10) + username.substring(1, 30);
         }
         obj.setUsername(username);
     }

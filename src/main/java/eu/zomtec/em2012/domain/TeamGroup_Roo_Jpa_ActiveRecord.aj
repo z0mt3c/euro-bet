@@ -3,11 +3,10 @@
 
 package eu.zomtec.em2012.domain;
 
+import eu.zomtec.em2012.domain.TeamGroup;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect TeamGroup_Roo_Jpa_ActiveRecord {

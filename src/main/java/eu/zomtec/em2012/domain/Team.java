@@ -23,7 +23,7 @@ public class Team {
     @NotNull
     @Column(unique = true)
     private Long externalTeamId;
-
+    
     public Team(String name, TeamGroup teamGroup, Long externalTeamId) {
         super();
         this.name = name;

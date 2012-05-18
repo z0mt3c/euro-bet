@@ -3,6 +3,7 @@
 
 package eu.zomtec.em2012.domain;
 
+import eu.zomtec.em2012.domain.TeamGroup;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

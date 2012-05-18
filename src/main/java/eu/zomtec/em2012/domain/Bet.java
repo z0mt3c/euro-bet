@@ -6,12 +6,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.Query;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +21,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString()
 @RooJpaActiveRecord(finders = { "findBetsByGame" })
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"bet_user","game"}))
 public class Bet {
 
     @NotNull

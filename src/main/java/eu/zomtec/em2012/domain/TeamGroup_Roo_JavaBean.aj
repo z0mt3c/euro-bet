@@ -3,6 +3,7 @@
 
 package eu.zomtec.em2012.domain;
 
+import eu.zomtec.em2012.domain.TeamGroup;
 
 privileged aspect TeamGroup_Roo_JavaBean {
     

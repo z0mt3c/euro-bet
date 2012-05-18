@@ -3,6 +3,7 @@
 
 package eu.zomtec.em2012.domain;
 
+import eu.zomtec.em2012.domain.TeamGroup;
 import org.springframework.beans.factory.annotation.Configurable;
 
 privileged aspect TeamGroup_Roo_Configurable {

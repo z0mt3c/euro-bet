@@ -3,13 +3,16 @@ package eu.zomtec.em2012.domain;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,6 +23,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString()
 @RooJpaActiveRecord(finders = { "findGamesByGameGroup", "findGamesByKickOffLessThanEquals" })
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"game_group","team_home","team_away"}))
 public class Game {
 
     @Transient
@@ -55,6 +59,7 @@ public class Game {
     private GameGroup gameGroup;
 
     @NotNull
+    @Column(unique=true)
     private Long externalGameId;
 
     public static TypedQuery<eu.zomtec.em2012.domain.Game> findGamesByGameGroupOrderByStart(GameGroup gameGroup) {

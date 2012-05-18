@@ -4,13 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooJpaActiveRecord(finders = { "findBetUsersByUsernameEquals" })
@@ -18,6 +18,7 @@ public class BetUser {
 
     @NotNull
     @Size(min = 3, max = 30)
+    @Column(unique=true)
     private String username;
 
     @NotNull

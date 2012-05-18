@@ -89,7 +89,7 @@ privileged aspect NewsController_Roo_Controller {
     }
     
     void NewsController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("news_creation_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("news_creation_date_format", DateTimeFormat.patternForStyle("MM", LocaleContextHolder.getLocale()));
     }
     
     void NewsController.populateEditForm(Model uiModel, News news) {

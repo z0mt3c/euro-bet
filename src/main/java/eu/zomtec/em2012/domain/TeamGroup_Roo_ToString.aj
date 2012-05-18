@@ -3,6 +3,7 @@
 
 package eu.zomtec.em2012.domain;
 
+import eu.zomtec.em2012.domain.TeamGroup;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

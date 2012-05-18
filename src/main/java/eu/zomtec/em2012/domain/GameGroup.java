@@ -2,6 +2,8 @@ package eu.zomtec.em2012.domain;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -14,6 +16,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class GameGroup {
 
     @NotNull
+    @Column(unique=true)
     private String name;
 
     private Integer sortOrder;
