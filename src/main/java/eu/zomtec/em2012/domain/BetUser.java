@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToMany;
+import javax.persistence.PostUpdate;
 import javax.persistence.PreUpdate;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
@@ -45,6 +46,7 @@ public class BetUser {
         return username + "(" + getId() + ")";
     }
 
+    
     public static long countBetUsers(String username) {
         if (username == null || username.length() == 0) throw new IllegalArgumentException("The username argument is required");
         final TypedQuery<Long> query = entityManager().createQuery("SELECT COUNT(o) FROM BetUser o WHERE LOWER(o.username) = LOWER(:username)", Long.class);

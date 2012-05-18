@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,6 +33,7 @@ import eu.zomtec.em2012.score.HighScoreService;
 @RequestMapping("/start/**")
 @Controller
 public class StartController {
+	private static final Logger LOG = Logger.getLogger(StartController.class);
 	
 	@Autowired
 	private BetManager betManager;
@@ -109,9 +111,13 @@ public class StartController {
     	final Game game = Game.findGame(gameId);
     	
     	if (!game.isBetOpen()) {
+    		LOG.info("User " + principal.getName() + " cannot bet for game " + gameId
+    				+ " the result " + home + ":" + away);
     		return Boolean.FALSE.toString();
     	} else {
         	final BetUser user = getUser(principal);
+			LOG.info("User " + user.getId() + " bets for game " + gameId
+					+ " the result " + home + ":" + away);
     		return Boolean.valueOf(betManager.placeBet(user, gameId, home, away)).toString();
     	}
     }
