@@ -62,7 +62,7 @@ public class Game {
     @Column(unique=true)
     private Long externalGameId;
 
-    public static TypedQuery<eu.zomtec.em2012.domain.Game> findGamesByGameGroupOrderByStart(GameGroup gameGroup) {
+    public static TypedQuery<Game> findGamesByGameGroupOrderByStart(GameGroup gameGroup) {
         if (gameGroup == null) throw new IllegalArgumentException("The gameGroup argument is required");
         EntityManager em = entityManager();
         TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.gameGroup = :gameGroup ORDER BY o.gameStatus DESC, o.kickOff ASC", Game.class);
@@ -77,13 +77,21 @@ public class Game {
         return GameStatus.UPCOMMING.equals(gameStatus) && calendar.getTime().before(kickOff);
     }
 
-    public static TypedQuery<eu.zomtec.em2012.domain.Game> findGamesByKickOffLessThanEqualsAndNotFinished(Date kickOff) {
+    public static TypedQuery<Game> findGamesByKickOffLessThanEqualsAndNotFinished(Date kickOff) {
         if (kickOff == null) throw new IllegalArgumentException("The kickOff argument is required");
         EntityManager em = Game.entityManager();
         TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.kickOff <= :kickOff AND o.gameStatus != :gameStatus", Game.class);
         q.setParameter("kickOff", kickOff);
         q.setParameter("gameStatus", GameStatus.FINISHED);
         return q;
+    }
+    
+    public static TypedQuery<Game> findNextGames(int i) {
+    	EntityManager em = Game.entityManager();
+    	TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.kickOff > :kickOff ORDER BY o.kickOff ASC", Game.class);
+    	q.setParameter("kickOff", new Date());
+    	q.setMaxResults(i);
+    	return q;
     }
     
     @Override

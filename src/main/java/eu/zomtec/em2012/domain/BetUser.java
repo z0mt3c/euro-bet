@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToMany;
+import javax.persistence.PreUpdate;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -56,5 +57,10 @@ public class BetUser {
     	final TypedQuery<Long> query = entityManager().createQuery("SELECT COUNT(o) FROM BetUser o WHERE LOWER(o.email) = LOWER(:email)", Long.class);
     	query.setParameter("email", email);
     	return query.getSingleResult();
+    }
+    
+    public static Integer countMoney() {
+        final TypedQuery<Integer> query = entityManager().createQuery("SELECT SUM(o.money) FROM BetUser o", Integer.class);
+        return query.getSingleResult();
     }
 }

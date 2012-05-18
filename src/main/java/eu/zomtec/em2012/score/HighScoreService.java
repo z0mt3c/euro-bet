@@ -21,8 +21,8 @@ public class HighScoreService {
 	    this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 	
-	private static final String SQL_QUERY_HIGHSCORE_TEMP = "SELECT bet_user.id AS userId, bet_user.username AS username, SUM(bet.score) AS totalScore FROM bet_user LEFT JOIN bet ON bet.bet_user = bet_user.id WHERE bet_user.enabled = 1 AND bet.bet_status IN (2,3) GROUP BY bet_user.id ORDER BY totalScore DESC, username ASC";
-	private static final String SQL_QUERY_HIGHSCORE_FINAL = "SELECT bet_user.id AS userId, bet_user.username AS username, SUM(bet.score) AS totalScore FROM bet_user LEFT JOIN bet ON bet.bet_user = bet_user.id WHERE bet_user.enabled = 1 AND bet.bet_status IN (3) GROUP BY bet_user.id ORDER BY totalScore DESC, username ASC";
+	private static final String SQL_QUERY_HIGHSCORE_TEMP = "SELECT bet_user.id AS userId, bet_user.username AS username, IFNULL(SUM(bet.score),0) AS totalScore FROM bet_user LEFT JOIN bet ON bet.bet_user = bet_user.id AND bet.bet_status IN (2,3) WHERE bet_user.enabled = 1 GROUP BY bet_user.id ORDER BY totalScore DESC, username ASC";
+	private static final String SQL_QUERY_HIGHSCORE_FINAL = "SELECT bet_user.id AS userId, bet_user.username AS username, IFNULL(SUM(bet.score),0) AS totalScore FROM bet_user LEFT JOIN bet ON bet.bet_user = bet_user.id AND bet.bet_status IN (3) WHERE bet_user.enabled = 1 GROUP BY bet_user.id ORDER BY totalScore DESC, username ASC";
 	
 	
 	public List<HighScore> getHighScoreTemp() {

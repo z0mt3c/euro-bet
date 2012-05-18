@@ -55,6 +55,8 @@ public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> 
 	private void init() {
 		final BetUserRole roleAdmin = new BetUserRole("ROLE_ADMIN");
 		roleAdmin.persist();
+		final BetUserRole roleUserAdmin = new BetUserRole("ROLE_USER");
+		roleUserAdmin.persist();
 		
 		final BetUser admin = new BetUser();
 		admin.setUsername("admin");

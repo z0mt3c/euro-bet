@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import eu.zomtec.em2012.domain.BetUser;
+import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.News;
 import eu.zomtec.em2012.score.HighScore;
 import eu.zomtec.em2012.score.HighScoreService;

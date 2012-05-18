@@ -63,9 +63,6 @@
 				</c:forEach>	
 			</ul>
 		</c:if>
-		
-		<h2><spring:message code="upcomming_games"/></h2>
-		<p>TODO</p>
 	</div>
 	<!-- /content -->
 </jsp:root>

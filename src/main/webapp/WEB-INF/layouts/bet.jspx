@@ -41,7 +41,7 @@
 <body>
 <div data-role="page">
 	<tiles:insertAttribute name="body" ignore="true" />
-		<spring:url value="/teamgroups" var="admin_url"/>
+		<spring:url value="/betusers" var="admin_url"/>
 		<spring:url value="/resources/j_spring_security_logout" var="logout_url"/>
 		<spring:url value="/login" var="login_url"/>
 		<spring:url value="/start/index" var="games_url"/>
@@ -52,7 +52,7 @@
 		<div data-role="footer" data-position="fixed">		
 			<div data-role="navbar">
 				<ul>
-					<li><a href="${start_url}" class="btnLogout" data-icon="info"><spring:message code="start"/></a></li>
+					<li><a href="${start_url}" class="btnLogout" data-icon="home"><spring:message code="start"/></a></li>
 					
 					<sec:authorize access="isAuthenticated()">
 						<li><a href="${games_url}" class="btnLogout" data-icon="home"><spring:message code="games"/></a></li>
@@ -60,7 +60,7 @@
 					
 					<li><a href="${scores_url}" class="btnLogout" data-icon="star"><spring:message code="scores"/></a></li>
 					
-					<sec:authorize ifAllGranted="ROLE_ADMIN">
+					<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER">
 						<li><a href="${admin_url}" rel="external" data-icon="gear"><spring:message code="admin"/></a></li>
 					</sec:authorize>
 					
