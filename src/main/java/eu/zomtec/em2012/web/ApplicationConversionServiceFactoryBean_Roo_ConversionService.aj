@@ -119,7 +119,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<GameGroup, String> ApplicationConversionServiceFactoryBean.getGameGroupToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<eu.zomtec.em2012.domain.GameGroup, java.lang.String>() {
             public String convert(GameGroup gameGroup) {
-                return new StringBuilder().append(gameGroup.getName()).append(" ").append(gameGroup.getSortOrder()).toString();
+                return new StringBuilder().append(gameGroup.getName()).append(" ").append(gameGroup.getSortOrder()).append(" ").append(gameGroup.getFactor()).toString();
             }
         };
     }

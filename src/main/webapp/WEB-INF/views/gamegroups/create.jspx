@@ -5,6 +5,7 @@
     <form:create id="fc_eu_zomtec_em2012_domain_GameGroup" modelAttribute="gameGroup" path="/gamegroups" render="${empty dependencies}" z="EGrBvFYowSuc8/Ie8eWBOvmJNg8=">
         <field:input field="name" id="c_eu_zomtec_em2012_domain_GameGroup_name" required="true" z="F57uFdHsy9WXLiyjn3HfCKBwVM4="/>
         <field:input field="sortOrder" id="c_eu_zomtec_em2012_domain_GameGroup_sortOrder" validationMessageCode="field_invalid_integer" z="zBb+JdoyT+RFQTOsOO59D/XDwZk="/>
+        <field:input field="factor" id="c_eu_zomtec_em2012_domain_GameGroup_factor" validationMessageCode="field_invalid_integer" z="dNiuEOSK7DnUxIQomxwALoBTOx8="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_eu_zomtec_em2012_domain_GameGroup" render="${not empty dependencies}" z="t2w+Z9v4BDCsbnTCL5WIsysUzm0="/>
 </div>

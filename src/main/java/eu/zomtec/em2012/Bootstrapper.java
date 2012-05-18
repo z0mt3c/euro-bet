@@ -16,6 +16,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import antlr.StringUtils;
+
 import eu.zomtec.em2012.domain.BetUser;
 import eu.zomtec.em2012.domain.BetUserRole;
 import eu.zomtec.em2012.domain.Game;
@@ -59,11 +61,13 @@ public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> 
 		roleUserAdmin.persist();
 		
 		final BetUser admin = new BetUser();
-		admin.setUsername("admin");
+		admin.setUsername("Timo");
 		admin.setEnabled(true);
-		admin.setPassword("8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918");
+		admin.setPassword("65ef8843ea0e55ef42793359eddc670cf66f5d5a1e91f1381de6ef1d0b2e043b");
+		
 		final HashSet<BetUserRole> roles = new HashSet<BetUserRole>(1);
 		roles.add(roleAdmin);
+		roles.add(roleUserAdmin);
 		admin.setRoles(roles);
 		admin.persist();
 		
@@ -130,6 +134,17 @@ public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> 
 			final HashMap<String, GameGroup> gameGroups = new HashMap<String, GameGroup>();
 			for (String tournamentGroup : tournamentGroupNames) {
 				GameGroup gameGroup = new GameGroup(tournamentGroup, 0);
+				
+				if (org.apache.commons.lang3.StringUtils.startsWith(tournamentGroup, "Gruppe")) {
+					gameGroup.setFactor(1);
+				} else if ("Finale".equals(tournamentGroup)) {
+					gameGroup.setFactor(4);
+				} else if ("Halbfinale".equals(tournamentGroup)) {
+					gameGroup.setFactor(3);
+				} else if ("Viertelfinale".equals(tournamentGroup)) {
+					gameGroup.setFactor(2);
+				}
+				
 				gameGroup.persist();
 				gameGroups.put(tournamentGroup, gameGroup);
 			}

@@ -6,6 +6,7 @@
         <table:table data="${gamegroups}" id="l_eu_zomtec_em2012_domain_GameGroup" path="/gamegroups" z="3TbDzNaj6gPXemkdZgikkiq4ydo=">
             <table:column id="c_eu_zomtec_em2012_domain_GameGroup_name" property="name" z="l+vusfS92NQP5dovFpVJk272ry8="/>
             <table:column id="c_eu_zomtec_em2012_domain_GameGroup_sortOrder" property="sortOrder" z="d4gtBw5adkMA80f/sDviXxAG5zM="/>
+            <table:column id="c_eu_zomtec_em2012_domain_GameGroup_factor" property="factor" z="YDvD6Wsw5Xz7hPV1JOFOAFSQlm8="/>
         </table:table>
     </page:list>
 </div>

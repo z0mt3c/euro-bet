@@ -25,8 +25,9 @@ public class ScoreCalculator {
 			bet.setBetStatus(gameStatus.getBetStatus());
 		} else {
 			final BetScoreType betScoreType = detectBetScoreType(game, bet);
+			int factor = game.getGameGroup().getFactor() != null ? game.getGameGroup().getFactor() : 1;
 			bet.setScoreType(betScoreType);
-			bet.setScore(betScoreType.getPoints());
+			bet.setScore(betScoreType.getPoints() * factor);
 			bet.setBetStatus(gameStatus.getBetStatus());
 			bet.setLastBetCalculation(new Date());
 		}

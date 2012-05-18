@@ -24,9 +24,15 @@ privileged aspect GameGroupDataOnDemand_Roo_DataOnDemand {
     
     public GameGroup GameGroupDataOnDemand.getNewTransientGameGroup(int index) {
         GameGroup obj = new GameGroup();
+        setFactor(obj, index);
         setName(obj, index);
         setSortOrder(obj, index);
         return obj;
+    }
+    
+    public void GameGroupDataOnDemand.setFactor(GameGroup obj, int index) {
+        Integer factor = new Integer(index);
+        obj.setFactor(factor);
     }
     
     public void GameGroupDataOnDemand.setName(GameGroup obj, int index) {

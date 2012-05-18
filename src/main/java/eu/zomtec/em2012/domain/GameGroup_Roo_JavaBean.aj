@@ -23,4 +23,12 @@ privileged aspect GameGroup_Roo_JavaBean {
         this.sortOrder = sortOrder;
     }
     
+    public Integer GameGroup.getFactor() {
+        return this.factor;
+    }
+    
+    public void GameGroup.setFactor(Integer factor) {
+        this.factor = factor;
+    }
+    
 }

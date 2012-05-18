@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import javax.persistence.TypedQuery;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,8 @@ public class PublicController {
 		if (user != null) {
 			modelMap.put("scores_temp_my", highScoreService.getHighScorePartForUser(user.getId(), 2, highScores));
 		}
+		
+		modelMap.put("money", BetUser.countMoney());
 		
 		return "public/news";
 	}
@@ -114,7 +117,7 @@ public class PublicController {
 		} else {
 			BetUser betUser = new BetUser();
 			betUser.setUsername(username);
-			betUser.setPassword(password);
+			betUser.setPassword(DigestUtils.sha256Hex(password));
 			betUser.setEnabled(false);
 			betUser.setEmail(email);
 			betUser.setMoney(0);

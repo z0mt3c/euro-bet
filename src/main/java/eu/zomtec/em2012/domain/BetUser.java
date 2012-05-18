@@ -59,8 +59,8 @@ public class BetUser {
     	return query.getSingleResult();
     }
     
-    public static Integer countMoney() {
-        final TypedQuery<Integer> query = entityManager().createQuery("SELECT SUM(o.money) FROM BetUser o", Integer.class);
+    public static Long countMoney() {
+        final TypedQuery<Long> query = entityManager().createQuery("SELECT SUM(o.money) FROM BetUser o", Long.class);
         return query.getSingleResult();
     }
 }
