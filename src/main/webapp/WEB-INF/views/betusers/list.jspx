@@ -8,6 +8,8 @@
             <table:column id="c_eu_zomtec_em2012_domain_BetUser_password" property="password" z="M09H3BIjoFty1TokST+i+96nnL0="/>
             <table:column id="c_eu_zomtec_em2012_domain_BetUser_roles" property="roles" z="b3Eqz09ZF59gbGVWK4JMsoZvihE="/>
             <table:column id="c_eu_zomtec_em2012_domain_BetUser_enabled" property="enabled" z="XAHCwn+qjxNb/b0X60CK6Yd6UfE="/>
+            <table:column id="c_eu_zomtec_em2012_domain_BetUser_email" property="email" z="nNtoAPFgZs9on7ad8eLX8NFltrk="/>
+            <table:column id="c_eu_zomtec_em2012_domain_BetUser_money" property="money" z="fhPzh64LrRsTkI/+W3WJdMekDZw="/>
         </table:table>
     </page:list>
 </div>

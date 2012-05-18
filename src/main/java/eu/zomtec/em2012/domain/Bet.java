@@ -19,7 +19,7 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooToString()
+@RooToString
 @RooJpaActiveRecord(finders = { "findBetsByGame" })
 @Table(uniqueConstraints=@UniqueConstraint(columnNames={"bet_user","game"}))
 public class Bet {

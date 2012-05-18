@@ -41,4 +41,20 @@ privileged aspect BetUser_Roo_JavaBean {
         this.enabled = enabled;
     }
     
+    public String BetUser.getEmail() {
+        return this.email;
+    }
+    
+    public void BetUser.setEmail(String email) {
+        this.email = email;
+    }
+    
+    public Integer BetUser.getMoney() {
+        return this.money;
+    }
+    
+    public void BetUser.setMoney(Integer money) {
+        this.money = money;
+    }
+    
 }

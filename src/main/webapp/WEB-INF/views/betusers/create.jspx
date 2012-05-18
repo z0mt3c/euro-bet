@@ -7,6 +7,8 @@
         <field:textarea field="password" id="c_eu_zomtec_em2012_domain_BetUser_password" required="true" z="HSjroI6raSyVPYAm0QnoOXPUkGI="/>
         <field:select field="roles" id="c_eu_zomtec_em2012_domain_BetUser_roles" itemValue="id" items="${betuserroles}" multiple="true" path="/betuserroles" z="d2R64qa1uEabeXYto4CoEY9Zvd0="/>
         <field:checkbox field="enabled" id="c_eu_zomtec_em2012_domain_BetUser_enabled" z="vZcn2sPV3OMIkUZAi/ZXatzWm/g="/>
+        <field:input field="email" id="c_eu_zomtec_em2012_domain_BetUser_email" required="true" validationMessageCode="field_invalid_email" z="yGBT6qW7ad8XWPL9XPasWclra4E="/>
+        <field:input field="money" id="c_eu_zomtec_em2012_domain_BetUser_money" validationMessageCode="field_invalid_integer" z="Hl8ZZVQEY8dOKeTHtsaRlOHpks8="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_eu_zomtec_em2012_domain_BetUser" render="${not empty dependencies}" z="mjwcvqv41/x/mPXxfIx5bHvsKLI="/>
 </div>

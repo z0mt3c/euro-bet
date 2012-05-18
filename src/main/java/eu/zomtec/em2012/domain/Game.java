@@ -21,7 +21,7 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooToString()
+@RooToString
 @RooJpaActiveRecord(finders = { "findGamesByGameGroup", "findGamesByKickOffLessThanEquals" })
 @Table(uniqueConstraints=@UniqueConstraint(columnNames={"game_group","team_home","team_away"}))
 public class Game {

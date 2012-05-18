@@ -24,15 +24,27 @@ privileged aspect BetUserDataOnDemand_Roo_DataOnDemand {
     
     public BetUser BetUserDataOnDemand.getNewTransientBetUser(int index) {
         BetUser obj = new BetUser();
+        setEmail(obj, index);
         setEnabled(obj, index);
+        setMoney(obj, index);
         setPassword(obj, index);
         setUsername(obj, index);
         return obj;
     }
     
+    public void BetUserDataOnDemand.setEmail(BetUser obj, int index) {
+        String email = "foo" + index + "@bar.com";
+        obj.setEmail(email);
+    }
+    
     public void BetUserDataOnDemand.setEnabled(BetUser obj, int index) {
         Boolean enabled = Boolean.TRUE;
         obj.setEnabled(enabled);
+    }
+    
+    public void BetUserDataOnDemand.setMoney(BetUser obj, int index) {
+        Integer money = new Integer(index);
+        obj.setMoney(money);
     }
     
     public void BetUserDataOnDemand.setPassword(BetUser obj, int index) {

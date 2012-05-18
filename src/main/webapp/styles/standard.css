@@ -16,15 +16,11 @@ body {
 }
 
 #wrapper {
-	width:800px;
-	min-width: 800px;
-	max-width: 800px;
+	width:100%;
 	margin-right: auto;
 	margin-left: auto;
 
 	/* fix max-width incompatibility in IE6 */
-	width:expression(document.body.clientWidth > 800? "800px": "auto" );
-	
 	overflow:hidden;
 	display:block;
 }
@@ -65,7 +61,7 @@ body {
 
 #menu h2 {
 	color: #fff;
-	background: #648C1D;
+	background: #555555;
 	text-transform: uppercase;
 	font-weight:bold;
 	font-size: 12px;
@@ -79,7 +75,7 @@ body {
 }
 
 #menu a:hover {
-	color: #648C1D;
+	color: #555555;
 	background: #fff;
 }
 
@@ -109,7 +105,7 @@ table.navigation {
 }
 
 label {
-	width:100px;
+	width:170px;
 	float:left;
 	margin-left: 5px;
 	margin-top: 0px;

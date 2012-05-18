@@ -58,7 +58,6 @@
 				<br />
 		
 				<fieldset class="ui-grid-a">
-						
 						<div class="ui-block-a"><button id="reset" type="reset" data-theme="d"><spring:message code="button_reset" htmlEscape="false" /></button></div>
 						<div class="ui-block-b"><button id="proceed" type="submit" data-theme="a"><spring:message code="button_submit" htmlEscape="false" /></button></div>
 			    </fieldset>

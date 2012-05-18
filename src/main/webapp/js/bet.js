@@ -13,6 +13,52 @@ $(document).bind("mobileinit", function() {
 		li.find("div.readBetContainer").hide();
 	});
 	
+	$("form#registerForm").live("submit", function(e) {
+		e.stopImmediatePropagation();
+		e.preventDefault();
+		
+		var error = false;
+		$(this).find("input").each(function(index) {
+			var value = $(this).val();
+			
+			if (value == "" || value.length < 4) {
+				$(this).css("border-color","#ff0000");
+				error = true;
+			} else {
+				$(this).css("border-color","");
+			}
+		});
+		
+		if (!error) {
+			var queryString = $(this).serialize();
+			$.mobile.showPageLoadingMsg();
+			
+			$.ajax({
+				type : 'POST',
+				url : 'register',
+				data : queryString,
+				success : function(data) {
+					if (data == "success") {
+						$("#registrationFormContainer").hide();
+						$("#registrationErrorContainer").hide();
+						$("#registrationErrors").empty();
+						$("#registrationSuccessContainer").show();
+						$.mobile.hidePageLoadingMsg();
+					} else {
+						$("#registrationErrorContainer").show();
+						$("#registrationErrors").html(data);
+						$.mobile.hidePageLoadingMsg();
+					}
+				},
+				error : function() {
+					$.mobile.hidePageLoadingMsg();
+					alert("Sorry, please try again.");
+				},
+				dataType : 'text'
+			});
+		}
+	});
+	
 	$("a.placeBet").live("click", function(e){ 
 		e.stopImmediatePropagation();
 		e.preventDefault();
@@ -33,6 +79,8 @@ $(document).bind("mobileinit", function() {
 		});
 		
 		if (!error) {
+			$.mobile.showPageLoadingMsg();   
+
 			$.ajax({
 				type : 'POST',
 				url : '../bet',
@@ -43,12 +91,15 @@ $(document).bind("mobileinit", function() {
 						var scoreString = form.children("input[name=home]").val() + " : " + form.children("input[name=away]").val();
 						li.find("div.placeBetContainer").hide();
 						li.find("div.readBetContainer").show().find("span.readOnlyBetScore").text(scoreString);
+						$.mobile.hidePageLoadingMsg();
 					} else {
-						alert("Sorry, please try again later.");
+						$.mobile.hidePageLoadingMsg();
+						alert("Sorry, please try again.");
 					}
 				},
 				error : function() {
-					alert("Sorry, please try again later.");
+					$.mobile.hidePageLoadingMsg();
+					alert("Sorry, please try again.");
 				},
 				dataType : 'text'
 			});

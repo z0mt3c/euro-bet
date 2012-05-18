@@ -14,9 +14,44 @@
 		</h1>
 	</div>
 	<!-- /header -->
-
 	<div data-role="content">
-		<p>TODO</p>
+		<div id="registrationFormContainer">
+			<p class="block"><spring:message code="register_description"/></p>
+			
+			<div class="ui-body ui-body-b" id="registrationErrorContainer" style="display:none;">
+				<h2><spring:message code="message_registration_error_title"/></h2> 
+				<ul id="registrationErrors">
+				</ul>
+			</div>
+			<form data-ajax="false" id="registerForm">
+				<div data-role="fieldcontain">
+					<label for="username">Username:</label>
+					<input type="text" name="username" id="username" value=""  />
+				</div>
+				<div data-role="fieldcontain">
+					<label for="password">Password:</label>
+					<input type="password" name="password" id="password" value=""  />
+				</div>
+				<div data-role="fieldcontain">
+					<label for="password2">Repeat password:</label>
+					<input type="password" name="password2" id="password2" value=""  />
+				</div>
+				<div data-role="fieldcontain">
+					<label for="email">Email:</label>
+					<input type="email" name="email" id="email" value=""  />
+				</div>
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a"><button type="reset" data-theme="d">Reset</button></div>
+					<div class="ui-block-b"><button type="submit" data-theme="a">Register</button></div>
+			    </fieldset>
+			</form>
+		</div>
+		<div id="registrationSuccessContainer" style="display:none;">
+			<div class="ui-body ui-body-b">
+				<h2><spring:message code="message_registration_success_title"/></h2> 
+				<p class="block"><spring:message code="message_registration_success_text"/></p>
+			</div>
+		</div>
 	</div>
 	<!-- /content -->
 </jsp:root>

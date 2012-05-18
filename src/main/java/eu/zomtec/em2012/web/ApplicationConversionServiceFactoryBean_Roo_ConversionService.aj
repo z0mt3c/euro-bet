@@ -47,7 +47,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<BetUser, String> ApplicationConversionServiceFactoryBean.getBetUserToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<eu.zomtec.em2012.domain.BetUser, java.lang.String>() {
             public String convert(BetUser betUser) {
-                return new StringBuilder().append(betUser.getUsername()).append(" ").append(betUser.getPassword()).toString();
+                return new StringBuilder().append(betUser.getUsername()).append(" ").append(betUser.getPassword()).append(" ").append(betUser.getEmail()).append(" ").append(betUser.getMoney()).toString();
             }
         };
     }
