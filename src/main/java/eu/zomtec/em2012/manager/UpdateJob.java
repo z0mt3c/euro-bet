@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import eu.zomtec.em2012.domain.Bet;
 import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameStatus;
+import eu.zomtec.em2012.domain.Team;
 import eu.zomtec.em2012.score.ScoreCalculator;
 import eu.zomtec.em2012.updater.League;
 import eu.zomtec.em2012.updater.LeagueService;
@@ -27,6 +28,8 @@ import eu.zomtec.em2012.updater.MatchStatus;
 
 @Component
 public class UpdateJob {
+	private static final Long TBD_TEAM_ID = Long.valueOf(-1L);
+
 	private static final Logger LOG = Logger.getLogger(UpdateJob.class);
 	
 	@Autowired
@@ -35,18 +38,45 @@ public class UpdateJob {
 	@Autowired
 	private ScoreCalculator scoreCalculator;
 	
-	// every day at midnight
-	@Scheduled(cron="0 0 0 * * ?")
 	@Async
-	public void updateTeams() throws ClientProtocolException, IOException, JSONException, ParseException {
+	public void processDetailUpdates() {
+		try {
+			startProcessDetailUpdates();
+		} catch (Exception e) {
+			LOG.error("Detail updater error!", e);
+		}
+	}
+
+	public void startProcessDetailUpdates() throws ClientProtocolException, IOException, JSONException, ParseException {
+		final TypedQuery<Game> gamesWithoutTeams = Game.findGamesWithUnknownTeams();
+		final List<Game> games = gamesWithoutTeams.getResultList();
 		
+		if (games.isEmpty()) {
+			LOG.info("No games without teams!");
+		} else {
+			LOG.info("Found "+games.size()+" games without teams!");
+			
+			final League league = leagueService.loadLeague();
+			for (Game game : games) {
+				if (updateGameDetails(league, game)) {
+					LOG.info("Updated game details: "+game);
+					game.merge();
+				}
+			}
+		}
 	}
 	
-	@Scheduled(fixedRate=15000)
 	@Async
-	public void process() throws ClientProtocolException, IOException, JSONException, ParseException {
+	public void processScoreUpdates() {
+		try {
+			startProcessScoreUpdates();
+		} catch (Exception e) {
+			LOG.error("Score updater error!", e);
+		}
+	}
+	
+	public void startProcessScoreUpdates() throws ClientProtocolException, IOException, JSONException, ParseException {
 		final List<Game> games = findGames();
-		
 		if (games.isEmpty()) {
 			LOG.info("No games need to be updated!");
 			return;
@@ -56,21 +86,25 @@ public class UpdateJob {
 		LOG.info(games.size()+" games found - loaded new scores: "+league);
 		
 		for (Game game : games) {
-			boolean recalculateScores = false;
+			try {
+				boolean recalculateScores = false;
 
-			if (!GameStatus.RECALCULATE.equals(game.getGameStatus())) {
-				recalculateScores |= updateScore(league, game);
-				game.merge();
-			} else {
-				recalculateScores = true;
-			}
-			
-			if (recalculateScores) {
-				LOG.info("Recalculating scores...");
-				final TypedQuery<Bet> betsQuery = Bet.findBetsByGame(game);
-				final List<Bet> bets = betsQuery.getResultList();
-				scoreCalculator.reviewBets(game, bets);
-				saveBets(bets);
+				if (!GameStatus.RECALCULATE.equals(game.getGameStatus())) {
+					recalculateScores |= updateScore(league, game);
+					game.merge();
+				} else {
+					recalculateScores = true;
+				}
+
+				if (recalculateScores) {
+					LOG.info("Recalculating scores for: " + game);
+					final TypedQuery<Bet> betsQuery = Bet.findBetsByGame(game);
+					final List<Bet> bets = betsQuery.getResultList();
+					scoreCalculator.reviewBets(game, bets);
+					saveBets(bets);
+				}
+			} catch (Exception e) {
+				LOG.error("Score updater error for game: "+game, e);
 			}
 		}
 	}
@@ -84,6 +118,10 @@ public class UpdateJob {
 	private boolean updateScore(League league, Game game) {
 		final Match match = league.getMatches().get(game.getExternalGameId());
 		
+		if (match == null) {
+			throw new IllegalStateException("No match for "+game+" with external: "+game.getExternalGameId());
+		}
+		updateGameDetails(match, game);
 		validateMatchVsGame(match, game);
 		
 		boolean change = false;
@@ -100,6 +138,36 @@ public class UpdateJob {
 		}
 		
 		return change;
+	}
+	
+	public boolean updateGameDetails(League league, Game game) {
+		return updateGameDetails(league.getMatches().get(game.getExternalGameId()), game);
+	}
+	
+	public boolean updateGameDetails(Match match, Game game) {
+		boolean update = false;
+		
+		final Long matchTeamIdHome = match.getTeamIdHome();
+		if (TBD_TEAM_ID.equals(game.getTeamHome().getExternalTeamId()) && !TBD_TEAM_ID.equals(matchTeamIdHome)) {
+			final Team newTeamHome = Team.findTeamsByExternalTeamIdEquals(matchTeamIdHome).getSingleResult();
+			game.setTeamHome(newTeamHome);
+			update = true;
+		}
+		
+		final Long matchTeamIdAway = match.getTeamIdAway();
+		if (TBD_TEAM_ID.equals(game.getTeamAway().getExternalTeamId()) && !TBD_TEAM_ID.equals(matchTeamIdAway)) {
+			final Team newTeamAway = Team.findTeamsByExternalTeamIdEquals(matchTeamIdAway).getSingleResult();
+			game.setTeamAway(newTeamAway);
+			update = true;
+		}
+		
+		final Date startTime = match.getStartTime();
+		if (!startTime.equals(game.getKickOff())) {
+			game.setKickOff(startTime);
+			update = true;
+		}
+		
+		return update;
 	}
 	
 	private void validateMatchVsGame(Match match, Game game) {

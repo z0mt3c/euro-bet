@@ -7,12 +7,10 @@ import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,7 +23,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord(finders = { "findGamesByGameGroup", "findGamesByKickOffLessThanEquals" })
 public class Game {
 
-    @Transient
+	@Transient
     public static final int CLOSE_BET_BEFORE_GAME_IN_MINUTES = 10;
 
     @NotNull
@@ -84,6 +82,18 @@ public class Game {
         q.setParameter("gameStatus", GameStatus.FINISHED);
         return q;
     }
+
+    public static TypedQuery<Game> findGamesWithUnknownTeams() {
+    	final Team tbdTeam = Team.findTeamsByExternalTeamIdEquals(-1L).getSingleResult();
+        EntityManager em = Game.entityManager();
+        final GregorianCalendar calendar = new GregorianCalendar();
+        calendar.add(GregorianCalendar.DAY_OF_YEAR, 10);
+        TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.kickOff < :filter AND (o.teamHome = :team OR o.teamAway = :team) ", Game.class);
+        q.setParameter("filter", calendar.getTime());
+        q.setParameter("team", tbdTeam);
+        return q;
+    }
+
     
     public static TypedQuery<Game> findNextGames(int i) {
     	EntityManager em = Game.entityManager();
@@ -92,9 +102,10 @@ public class Game {
     	q.setMaxResults(i);
     	return q;
     }
-    
+
     @Override
-    public String toString() {
-		return teamHome.toString() + " : " + teamAway.toString() + "(" + getId() + ")";
-    }
+	public String toString() {
+		return "Game "+getId()+" [teamHome=" + teamHome + ", teamAway=" + teamAway
+				+ ", externalGameId=" + externalGameId + "]";
+	}
 }

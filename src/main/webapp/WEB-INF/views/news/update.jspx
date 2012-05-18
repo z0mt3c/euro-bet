@@ -3,8 +3,8 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_eu_zomtec_em2012_domain_News" modelAttribute="news" path="/news" versionField="Version" z="7jHzPYhOpj2m90xkXFapvqL83Lc=">
-        <field:input field="title" id="c_eu_zomtec_em2012_domain_News_title" z="BHdbs2Iq/sibr29Yab2cdzOjnUQ="/>
-        <field:textarea field="text" id="c_eu_zomtec_em2012_domain_News_text" z="b6I2WqsVIw958ttNEIbNVYSketQ="/>
+        <field:input field="title" id="c_eu_zomtec_em2012_domain_News_title" required="true" z="2K9eFGu06FDeqFdePgaKL5iiNaY="/>
+        <field:textarea field="text" id="c_eu_zomtec_em2012_domain_News_text" required="true" z="bQpA4U+5Da+aXBZBKXd+8LbYQY4="/>
         <field:datetime dateTimePattern="${news_creation_date_format}" field="creation" id="c_eu_zomtec_em2012_domain_News_creation" z="qqHatBlLRci+fCDLqYRsLD9/+1c="/>
     </form:update>
 </div>
