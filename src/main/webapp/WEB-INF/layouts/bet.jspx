@@ -55,7 +55,7 @@
 					<li><a href="${start_url}" class="btnLogout" data-icon="home"><spring:message code="start"/></a></li>
 					
 					<sec:authorize access="isAuthenticated()">
-						<li><a href="${games_url}" class="btnLogout" data-icon="home"><spring:message code="games"/></a></li>
+						<li><a href="${games_url}" class="btnLogout" data-icon="grid"><spring:message code="games"/></a></li>
 					</sec:authorize>
 					
 					<li><a href="${scores_url}" class="btnLogout" data-icon="star"><spring:message code="scores"/></a></li>
