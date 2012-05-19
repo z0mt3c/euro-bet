@@ -50,7 +50,7 @@
 				
 				<spring:url value="/images/game.png" var="game_png"/>
 				<div class="ui-li-count"><img src="${game_png}" class="left bubbleIcon"/> ${game.scoreHome}:${game.scoreAway}</div> 
-				<div class="ui-li-count">${game.gameStatus}</div> 
+				<div class="ui-li-count"><spring:message code="game_status_short_${fn:toLowerCase(game.gameStatus)}" text="${game.gameStatus}" /></div> 
 			</div>
 	</a></li>
 </jsp:root>

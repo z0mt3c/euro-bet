@@ -5,10 +5,10 @@ h2 {
 p {
 	font-size: 0.9em;
 }
-a.editBet, a.placeBet {
-	display: inline-block;
-	float: right;
-	margin-top: 4px;
+a.editBet, input.placeBet, a.placeBet, form.betForm .ui-btn {
+	display: inline-block !important;
+	float: right !important;
+	margin-top: 4px !important;
 }
 
 span.readOnlyBetScore {
@@ -69,6 +69,11 @@ div.bubbleGroup div.ui-li-count {
 	
 	ul.portFix li div.bubbleGroup div.ui-li-count {
 		margin-top:10px;
+	}
+	
+	
+	ul#usersBets li a div.bubbleGroup div.ui-li-count {
+		margin-top:30px;
 	}
 }
 

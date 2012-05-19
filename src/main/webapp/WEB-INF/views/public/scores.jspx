@@ -15,8 +15,6 @@
 	<!-- /header -->
 
 	<div data-role="content">
-		<p><spring:message code="score_board_description"/></p>
-		
 		<spring:url value="/public/scores/final" var="scores_final_url"/>
 		<spring:url value="/public/scores/temp" var="scores_temp_url"/>
 		

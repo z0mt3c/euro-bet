@@ -62,15 +62,21 @@ $(document).bind("mobileinit", function() {
 	$("a.placeBet").live("click", function(e){ 
 		e.stopImmediatePropagation();
 		e.preventDefault();
+		$(this).parent("form.betForm").submit();
+	});
+	
+	$("form.betForm").live("submit", function(e){ 
+		e.stopImmediatePropagation();
+		e.preventDefault();
 		
-		var form = $(this).parent();
+		var form = $(this);
 		var queryString = form.serialize();
 		var error = false;
 		
 		form.find("input").each(function(index) {
 			var value = parseInt($(this).val());
 			
-			if (!isNumber($(this).val()) || !(value >= 0)) {
+			if ($(this).attr("type") != "submit" && (!isNumber($(this).val()) || !(value >= 0))) {
 				$(this).css("border-color","#ff0000");
 				error = true;
 			} else {

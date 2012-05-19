@@ -17,10 +17,13 @@
 
 	<div data-role="content">
 		<c:if test="${not empty game}">
+			<spring:url value="/images/team/normal/${game.teamHome.externalTeamId}.png" var="team_home_img"/>
+			<spring:url value="/images/team/normal/${game.teamAway.externalTeamId}.png" var="team_away_img"/>
+		
 			<div class="ui-grid-b">
 				<div class="ui-block-a" style="text-align: center;">
 					<img
-						src="../../../images/team/normal/${game.teamHome.externalTeamId}.png" />
+						src="${team_home_img}" />
 					<h3 class="ellipses">${game.teamHome.name}</h3>
 				</div>
 				<div class="ui-block-b" style="text-align: center;">
@@ -29,7 +32,7 @@
 				</div>
 				<div class="ui-block-c" style="text-align: center;">
 					<img
-						src="../../../images/team/normal/${game.teamAway.externalTeamId}.png" />
+						src="${team_away_img}" />
 					<h3 class="ellipses">${game.teamAway.name}</h3>
 				</div>
 			</div>

@@ -136,12 +136,16 @@ public class Bootstrapper implements ApplicationListener<ContextRefreshedEvent> 
 				GameGroup gameGroup = new GameGroup(tournamentGroup, 0);
 				
 				if (org.apache.commons.lang3.StringUtils.startsWith(tournamentGroup, "Gruppe")) {
+					gameGroup.setSortOrder(0);
 					gameGroup.setFactor(1);
 				} else if ("Finale".equals(tournamentGroup)) {
+					gameGroup.setSortOrder(3);
 					gameGroup.setFactor(4);
 				} else if ("Halbfinale".equals(tournamentGroup)) {
+					gameGroup.setSortOrder(2);
 					gameGroup.setFactor(3);
 				} else if ("Viertelfinale".equals(tournamentGroup)) {
+					gameGroup.setSortOrder(1);
 					gameGroup.setFactor(2);
 				}
 				

@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import eu.zomtec.em2012.domain.Bet;
@@ -64,6 +63,33 @@ public class UpdateJob {
 				}
 			}
 		}
+	}
+	
+	public void updateAllGameDetails() throws ClientProtocolException, IOException, JSONException, ParseException {
+		LOG.info("Manual complete game update!");
+		
+		final List<Game> games = Game.findAllGames();
+		final League league = leagueService.loadLeague();
+		
+		for (Game game : games) {
+			updateScore(league, game);
+			game.merge();
+		}
+		LOG.info("Finished games!");
+	}
+	
+	public void calculateAllBets() throws ClientProtocolException, IOException, JSONException, ParseException {
+		LOG.info("Manual complete bet calculation!");
+		
+		final List<Game> games = Game.findAllGames();
+		for (Game game : games) {
+			LOG.info("Recalculating scores for: " + game);
+			final TypedQuery<Bet> betsQuery = Bet.findBetsByGame(game);
+			final List<Bet> bets = betsQuery.getResultList();
+			scoreCalculator.reviewBets(game, bets);
+			saveBets(bets);
+		}
+		LOG.info("Finshed bets!");
 	}
 	
 	@Async

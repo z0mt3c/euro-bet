@@ -11,6 +11,7 @@
         
         <!-- Configure these elements to secure URIs in your application -->
         <intercept-url pattern="/bets/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/betusers/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
         <intercept-url pattern="/betuserroles/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/games/**" access="hasRole('ROLE_ADMIN')" />

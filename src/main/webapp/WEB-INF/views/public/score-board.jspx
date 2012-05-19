@@ -15,8 +15,6 @@
 	<!-- /header -->
 
 	<div data-role="content">
-		<p><spring:message code="score_board_description"/></p>
-		
 		<c:if test="${not empty scores_final}">
 			<h2><spring:message code="scores_final"/></h2>
 			<p><spring:message code="scores_final_description"/></p>

@@ -69,7 +69,7 @@ public class PublicController {
     	return "public/register";
     }
     
-    @RequestMapping(value="/scores/temp")
+    @RequestMapping(value="/scores/final")
     public String finalScores(ModelMap modelMap) {
     	final List<HighScore> finalScores = highScoreService.getHighScoreFinal(1000);
     	modelMap.put("scores_final", finalScores);
@@ -77,7 +77,7 @@ public class PublicController {
         return "public/score-board";
     }
     
-    @RequestMapping(value="/scores/final")
+    @RequestMapping(value="/scores/temp")
     public String tempScores(ModelMap modelMap) {
     	final List<HighScore> tempScores = highScoreService.getHighScoreTemp(1000);
     	modelMap.put("scores_temp", tempScores);
