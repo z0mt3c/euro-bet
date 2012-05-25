@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import eu.zomtec.em2012.domain.BetUser;
-import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.News;
 import eu.zomtec.em2012.score.HighScore;
 import eu.zomtec.em2012.score.HighScoreService;
@@ -37,7 +36,7 @@ public class PublicController {
 		modelMap.put("news", news);
 		
 		final List<HighScore> highScores = highScoreService.getHighScoreTemp();
-		modelMap.put("scores_temp", highScores);
+		modelMap.put("scores_temp", highScores.size() > 5 ? highScores.subList(0, 4) : highScores);
 		
 		final BetUser user = getUser(principal);
 		if (user != null) {
@@ -45,6 +44,8 @@ public class PublicController {
 		}
 		
 		modelMap.put("money", BetUser.countMoney());
+		modelMap.put("usersActive", BetUser.countBetUsersActive());
+		modelMap.put("usersTotal", BetUser.countBetUsers());
 		
 		return "public/news";
 	}

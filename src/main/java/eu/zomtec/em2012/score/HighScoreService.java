@@ -63,7 +63,7 @@ public class HighScoreService {
 		}
 	}
 	
-	public List<HighScore> getHighScorePartForUser(Long userId,int range, List<HighScore> highScoreTemp) {
+	public List<HighScore> getHighScorePartForUser(Long userId, int range, List<HighScore> highScoreTemp) {
 		Integer i = -1;
 		
 		for (HighScore highScore : highScoreTemp) {
@@ -74,8 +74,8 @@ public class HighScoreService {
 		}
 		
 		final int maxIndex = highScoreTemp.size();
-		final int upperLimit = NumberUtils.min(i+range, maxIndex, maxIndex);
-		final int lowerLimit = NumberUtils.max(i-range, 0, 0);
+		final int upperLimit = NumberUtils.min(i+(range+1), maxIndex, maxIndex);
+		final int lowerLimit = NumberUtils.max(i-(range), 0, 0);
 		
 		return highScoreTemp.subList(lowerLimit, upperLimit);
 	}

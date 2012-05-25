@@ -18,12 +18,26 @@ public class HighScore {
 		return totalScore == null ? 0 : totalScore;
 	}
 
+	public HighScore() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setTotalScore(Integer totalScore) {
 		this.totalScore = totalScore;
 	}
 
 	public Long getUserId() {
 		return userId;
+	}
+
+	public HighScore(Integer position, String username, Integer totalScore,
+			Long userId) {
+		super();
+		this.position = position;
+		this.username = username;
+		this.totalScore = totalScore;
+		this.userId = userId;
 	}
 
 	public void setUserId(Long userId) {

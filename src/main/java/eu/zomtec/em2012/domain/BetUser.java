@@ -65,4 +65,8 @@ public class BetUser {
         final TypedQuery<Long> query = entityManager().createQuery("SELECT SUM(o.money) FROM BetUser o", Long.class);
         return query.getSingleResult();
     }
+    
+    public static long countBetUsersActive() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM BetUser o WHERE o.enabled = true", Long.class).getSingleResult();
+    }
 }
