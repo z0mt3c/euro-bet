@@ -171,7 +171,7 @@
 			</p>
 
 			<ul data-role="listview" data-inset="true">
-				<c:forEach items="${scores_temp}" var="score">
+				<c:forEach items="${scores_temp_my}" var="score">
 					<tiles:insertTemplate
 						template="/WEB-INF/snippets/score-list-entry.jsp">
 						<tiles:putAttribute name="score" value="${score}" />

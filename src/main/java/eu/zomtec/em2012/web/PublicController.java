@@ -1,6 +1,7 @@
 package eu.zomtec.em2012.web;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -36,12 +37,14 @@ public class PublicController {
 		modelMap.put("news", news);
 		
 		final List<HighScore> highScores = highScoreService.getHighScoreTemp();
-		modelMap.put("scores_temp", highScores.size() > 5 ? highScores.subList(0, 4) : highScores);
 		
 		final BetUser user = getUser(principal);
 		if (user != null) {
-			modelMap.put("scores_temp_my", highScoreService.getHighScorePartForUser(user.getId(), 2, highScores));
+			modelMap.put("scores_temp_my", highScoreService.getHighScorePartForUser(user.getId(), 2, new ArrayList<HighScore>(highScores)));
 		}
+
+		modelMap.put("scores_temp", highScores.size() > 5 ? highScores.subList(0, 5) : highScores);
+		
 		
 		modelMap.put("money", BetUser.countMoney());
 		modelMap.put("usersActive", BetUser.countBetUsersActive());

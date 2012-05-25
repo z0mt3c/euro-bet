@@ -54,4 +54,27 @@ public class HighScoreServiceTest extends AbstractJUnit4SpringContextTests {
 		highScorePartForUser = highScoreService.getHighScorePartForUser(1L, 20, highScoreTemp);
 		Assert.assertEquals(5, highScorePartForUser.size());
 	}
+	
+	@Test
+	public void testHighScorePartForUser2() {
+		List<HighScore> highScoreTemp = new ArrayList<HighScore>();
+		
+		highScoreTemp.add(new HighScore(1, "Tester1", 5, 1L));
+		highScoreTemp.add(new HighScore(1, "Tester2", 5, 2L));
+		highScoreTemp.add(new HighScore(1, "Tester3", 5, 3L));
+		highScoreTemp.add(new HighScore(1, "Tester4", 5, 4L));
+		highScoreTemp.add(new HighScore(1, "Tester5", 5, 5L));
+		highScoreTemp.add(new HighScore(1, "Tester6", 5, 6L));
+		highScoreTemp.add(new HighScore(1, "Tester7", 5, 7L));
+		highScoreTemp.add(new HighScore(1, "Tester8", 5, 8L));
+		highScoreTemp.add(new HighScore(1, "Tester9", 5, 9L));
+		
+		List<HighScore> highScorePartForUser = highScoreService.getHighScorePartForUser(6L, 2, highScoreTemp);
+		Assert.assertEquals(5, highScorePartForUser.size());
+		Assert.assertEquals(4L, highScorePartForUser.get(0).getUserId().longValue());
+		Assert.assertEquals(5L, highScorePartForUser.get(1).getUserId().longValue());
+		Assert.assertEquals(6L, highScorePartForUser.get(2).getUserId().longValue());
+		Assert.assertEquals(7L, highScorePartForUser.get(3).getUserId().longValue());
+		Assert.assertEquals(8L, highScorePartForUser.get(4).getUserId().longValue());
+	}
 }
