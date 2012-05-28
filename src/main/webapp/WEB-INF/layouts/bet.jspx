@@ -15,6 +15,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="format-detection" content="telephone=no"/>
 <title>
 	<spring:message code="application_name" htmlEscape="false"/>
@@ -24,6 +26,17 @@
 </title>
 <spring:url value="/styles/bet.css" var="bet_css" />
 <spring:url value="/js/bet.js" var="bet_js" />
+ 
+<!-- iPhone Stuff -->
+<spring:url value="/apple-touch-icon.png" var="apple_icon" />
+<spring:url value="/apple-touch-icon-57x57-precomposed.png" var="apple_icon_57x57" />
+<spring:url value="/apple-touch-icon-72x72-precomposed.png" var="apple_icon_72x72" />
+<spring:url value="/apple-touch-icon-114x114-precomposed.png" var="apple_icon_114x114" />
+<link rel="apple-touch-icon" href="${apple_icon}" />
+<link rel="apple-touch-icon" sizes="57x57" href="${apple_icon_57x57}" />
+<link rel="apple-touch-icon" sizes="72x72" href="${apple_icon_72x72}" />
+<link rel="apple-touch-icon" sizes="114x114" href="${apple_icon_114x114}" />
+
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
 <link rel="stylesheet" href="${bet_css}" />
 <script src="http://code.jquery.com/jquery-1.6.4.min.js">
