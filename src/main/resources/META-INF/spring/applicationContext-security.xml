@@ -8,7 +8,7 @@
 		<form-login login-processing-url="/resources/j_spring_security_check"
 			login-page="/login" authentication-failure-url="/login?login_error=t" />
 		<logout logout-url="/resources/j_spring_security_logout" />
-		<remember-me key="emzeu-auth" />
+		<remember-me key="emzeu-auth" token-validity-seconds="8640000" use-secure-cookie="false" />
 
 		<!-- Configure these elements to secure URIs in your application -->
 		<intercept-url pattern="/bets/**" access="hasRole('ROLE_ADMIN')" />
