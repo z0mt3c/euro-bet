@@ -15,4 +15,7 @@
     <definition extends="bet" name="public/register">
         <put-attribute name="body" value="/WEB-INF/views/public/register.jspx"/>
     </definition>
+    
+    <definition name="public/dashboard" template="/WEB-INF/views/public/dashboard.jspx">
+    </definition>
 </tiles-definitions>

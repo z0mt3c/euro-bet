@@ -89,6 +89,15 @@ public class PublicController {
         return "public/score-board";
     }
     
+    
+    @RequestMapping(value="/dashboard")
+    public String dashboard(ModelMap modelMap) {
+    	final List<HighScore> tempScores = highScoreService.getHighScoreTemp(1000);
+    	modelMap.put("scores_temp", tempScores);
+    	
+        return "public/dashboard";
+    }
+    
     @RequestMapping(value="/register", method = RequestMethod.POST)
     @ResponseBody
     public String registerPost(ModelMap modelMap, @RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String email) {
