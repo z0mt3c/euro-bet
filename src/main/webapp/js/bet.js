@@ -65,6 +65,14 @@ $(document).bind("mobileinit", function() {
 		$(this).parent("form.betForm").submit();
 	});
 	
+	$("a[rel='external']").live("click", function(e) {
+		if ($(this).href) {
+			e.stopImmediatePropagation();
+			e.preventDefault();
+			location.href = this.href;
+		}
+	});
+	
 	$("form.betForm").live("submit", function(e){ 
 		e.stopImmediatePropagation();
 		e.preventDefault();
