@@ -143,3 +143,26 @@ div.bubbleGroup div.ui-li-count {
   font-weight: bold;
   color: #000;
 }
+
+span.dashCaption {
+	float: left; margin-left: 4px; margin-top: 2px; 
+}
+
+li.topPaddingFix {
+	padding-top:4px !important;
+}
+
+@-moz-document url-prefix() { 
+	span.dashCaption {
+		float: left; margin-left: 4px; margin-top: 4px; 
+	}
+	
+	ul li.topPaddingFix {
+		padding-top:6px !important;
+	}
+		
+}
+
+div.reduceTopPadding {
+	padding-top:0px !important;
+}

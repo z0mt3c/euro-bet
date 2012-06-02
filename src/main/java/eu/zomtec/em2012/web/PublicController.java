@@ -2,7 +2,9 @@ package eu.zomtec.em2012.web;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import javax.persistence.TypedQuery;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import eu.zomtec.em2012.domain.BetUser;
+import eu.zomtec.em2012.domain.Game;
+import eu.zomtec.em2012.domain.GameStatus;
 import eu.zomtec.em2012.domain.News;
 import eu.zomtec.em2012.score.HighScore;
 import eu.zomtec.em2012.score.HighScoreService;
@@ -91,12 +95,50 @@ public class PublicController {
     
     
     @RequestMapping(value="/dashboard")
-    public String dashboard(ModelMap modelMap) {
-    	final List<HighScore> tempScores = highScoreService.getHighScoreTemp(1000);
+    public String dashboard(ModelMap modelMap, @RequestParam(defaultValue="5") Integer games, @RequestParam(defaultValue="1000") Integer scores,
+    		@RequestParam(defaultValue="1") Integer header, @RequestParam(defaultValue="0") Integer reload) {
+    	modelMap.put("showHeader",header > 0);
+		modelMap.put("reload", reload);
+
+    	final List<HighScore> tempScores = highScoreService.getHighScoreTemp(scores);
     	modelMap.put("scores_temp", tempScores);
+    	
+    	final List<Game> nextGames = Game.findNextGames(games).getResultList();
+    	final List<Game> runningGames = Game.findPastGames(GameStatus.RUNNING, games).getResultList();
+    	final List<Game> finishedGames = Game.findPastGames(GameStatus.FINISHED, games).getResultList();
+    	modelMap.put("runningGames",runningGames);
+    	modelMap.put("finishedGames",finishedGames);
+    	modelMap.put("nextGames",nextGames);
+    	
+    	if (!nextGames.isEmpty()) {
+    		final Game game = nextGames.get(0);
+    		final Date kickOff = game.getKickOff();
+    		modelMap.put("nextGame",game);
+    		modelMap.put("nextGameTimeStamp", getCountDownString(kickOff));
+    	}
     	
         return "public/dashboard";
     }
+
+	private String getCountDownString(final Date kickOff) {
+		final long time = kickOff.getTime() - System.currentTimeMillis();
+		
+		final long days = TimeUnit.MILLISECONDS.toDays(time);
+		
+		final long hoursAbsolut = TimeUnit.MILLISECONDS.toHours(time);
+		final long hours = hoursAbsolut - TimeUnit.DAYS.toHours(days);
+		
+		final long minutesAbsolut = TimeUnit.MILLISECONDS.toMinutes(time);
+		final long minutes = minutesAbsolut - TimeUnit.HOURS.toMinutes(hoursAbsolut);
+		
+		final long seconds = TimeUnit.MILLISECONDS.toSeconds(time) - TimeUnit.MINUTES.toSeconds(minutesAbsolut);
+		
+		final String timeString = StringUtils.leftPad(String.valueOf(days), 2, "0") + ":" + StringUtils.leftPad(String.valueOf(hours), 2, "0")
+				+":"+StringUtils.leftPad(String.valueOf(minutes), 2, "0")
+				+":"+StringUtils.leftPad(String.valueOf(seconds), 2, "0");
+		
+		return timeString;
+	}
     
     @RequestMapping(value="/register", method = RequestMethod.POST)
     @ResponseBody

@@ -19,10 +19,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="format-detection" content="telephone=no"/>
 <title>
-	<spring:message code="application_name" htmlEscape="false"/>
-	<c:if test="${not empty pageTitle}">
-	 - ${pageTitle}
-	</c:if>
+	EURO 2012 - DASHBOARD
 </title>
 <spring:url value="/styles/bet.css" var="bet_css" />
 <spring:url value="/js/dash.js" var="dash_js" />
@@ -37,20 +34,28 @@
 <script src="${count_js}">
 <!-- dummy -->
 </script>
+<c:if test="${not empty nextGameTimeStamp}">
 <script type="text/javascript">
-$(document).ready(function() {
-	$('#counter').countdown({
-	    stepTime: 60,
-	    format: 'dd:hh:mm:ss',
-	    startTime: "${nextGameTimeStamp}",
-	    digitImages: 6,
-	    digitWidth: 53,
-	    digitHeight: 77,
-	    timerEnd: function() { },
-	    image: "../images/digits.png"
-	  });
-});
+	$(document).ready(function() {
+		if (${reload} > 0) {
+			setTimeout("location.reload(true);", ${reload}*1000);
+		}
+		
+		$('#counter').countdown({
+			stepTime : 60,
+			format : 'dd:hh:mm:ss',
+			startTime : "${nextGameTimeStamp}",
+			digitImages : 6,
+			digitWidth : 53,
+			digitHeight : 77,
+			timerEnd : function() {
+				location.reload(true);
+			},
+			image : "../images/digits.png"
+		});
+	});
 </script>
+</c:if>
 <script
 	src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js">
 <!-- dummy -->
@@ -60,34 +65,89 @@ $(document).ready(function() {
 <body>
 <spring:url value="/images/em2012.png" var="em2012_url"/>
 <div data-role="page">
-	<div data-role="header" data-position="fixed">
-		<h1>
-			EURO 2012
-		</h1>
-	</div>
+	<c:if test="${showHeader}">
+		<div data-role="header">
+			<h1>
+				EURO 2012
+			</h1>
+		</div>
+	</c:if>
+	
 	<!-- /header -->
-	<div data-role="content">
+	<div data-role="content" class="reduceTopPadding">
 		<div class="ui-grid-a">
 			<div class="ui-block-a">
-				<h2>Next game in...</h2>
-				<div style="width:520px; margin:auto; margin-top:50px;">
+			<c:if test="${not empty nextGameTimeStamp}">
+				<spring:url value="/images/team/normal/${nextGame.teamHome.externalTeamId}.png" var="team_home_img"/>
+				<spring:url value="/images/team/normal/${nextGame.teamAway.externalTeamId}.png" var="team_away_img"/>
+			
+			  <div style="width: 96%;">
+				<ul data-role="listview" data-inset="true" data-divider-theme="a">
+					<li data-role="list-divider">Next match</li>
+					<li>
+					<div>
+									<div style="width: 520px; margin: auto; margin-bottom:20px;">
 					<div id="counter">
-					<!-- dummy -->
+						<!-- dummy -->
 					</div>
-					  <div class="desc">
-					    <div>Days</div>
-					    <div>Hours</div>
-					    <div>Minutes</div>
-					    <div style="margin-right:0px;">Seconds</div>
-					  </div>
-			    </div>
+					<div class="desc">
+						<div>Days</div>
+						<div>Hours</div>
+						<div>Minutes</div>
+						<div style="margin-right: 0px;">Seconds</div>
+					</div>
+					<br style="clear: both;" />
+				</div>
+				<div class="ui-grid-b" style="width:450px; margin: auto;">
+					<div class="ui-block-a" style="text-align: center; width: 200px;">
+						<img
+							src="${team_home_img}" />
+						<h3 class="ellipses">${nextGame.teamHome.name}</h3>
+					</div>
+					<div class="ui-block-b" style="text-align: center; width: 50px;">
+						<h1 style="font-size:40px;">:</h1>
+					</div>
+					<div class="ui-block-c" style="text-align: center; width: 200px;">
+						<img
+							src="${team_away_img}" />
+						<h3 class="ellipses">${nextGame.teamAway.name}</h3>
+					</div>
+				</div>
+					</div>
+					</li>
+				</ul>
+			</div>
+
+			</c:if>
+		    <div style="width: 96%;">
+				<ul data-role="listview" data-inset="true" data-divider-theme="a">
+				    <c:if test="${not empty runningGames}">
+						<tiles:insertTemplate template="/WEB-INF/snippets/game-score-group.jspx">
+							<tiles:putAttribute name="title" value="Running matches"/>
+							<tiles:putAttribute name="games" value="${runningGames}"/>
+						</tiles:insertTemplate>
+					</c:if>
+				    <c:if test="${not empty finishedGames}">
+						<tiles:insertTemplate template="/WEB-INF/snippets/game-score-group.jspx">
+							<tiles:putAttribute name="title" value="Latest results"/>
+							<tiles:putAttribute name="games" value="${finishedGames}"/>
+						</tiles:insertTemplate>
+					</c:if>
+				    <c:if test="${not empty nextGames}">
+						<tiles:insertTemplate template="/WEB-INF/snippets/game-score-group.jspx">
+							<tiles:putAttribute name="title" value="Next matches"/>
+							<tiles:putAttribute name="games" value="${nextGames}"/>
+						</tiles:insertTemplate>
+					</c:if>
+			    </ul>
+		    </div>
 			</div>
 			<div class="ui-block-b">
 				<c:if test="${not empty scores_temp}">
-					<h2><spring:message code="scores_temp"/></h2>					
-					<ul data-role="listview" data-inset="true">
+					<ul data-role="listview" data-inset="true" data-divider-theme="a">
+						<li data-role="list-divider"><spring:message code="scores_temp"/></li>
 						<c:forEach items="${scores_temp}" var="score">
-							<tiles:insertTemplate template="/WEB-INF/snippets/score-list-entry.jsp">
+							<tiles:insertTemplate template="/WEB-INF/snippets/score-list-entry-dash.jsp">
 								<tiles:putAttribute name="score" value="${score}"/>
 							</tiles:insertTemplate>
 						</c:forEach>	

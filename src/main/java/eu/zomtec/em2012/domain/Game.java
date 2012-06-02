@@ -102,6 +102,15 @@ public class Game {
     	q.setMaxResults(i);
     	return q;
     }
+    
+    public static TypedQuery<Game> findPastGames(GameStatus status, int i) {
+    	EntityManager em = Game.entityManager();
+    	TypedQuery<Game> q = em.createQuery("SELECT o FROM Game AS o WHERE o.gameStatus = :status AND o.kickOff < :kickOff ORDER BY o.kickOff DESC", Game.class);
+    	q.setParameter("kickOff", new Date());
+    	q.setParameter("status", status);
+    	q.setMaxResults(i);
+    	return q;
+    }
 
     @Override
 	public String toString() {
