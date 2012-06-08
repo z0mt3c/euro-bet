@@ -3,7 +3,17 @@ function isNumber(n) {
 };
 
 $(document).bind("mobileinit", function() {
+	$.mobile.page.prototype.options.domCache = false;
 	$.mobile.page.prototype.options.addBackBtn = true;
+	
+	jQuery('div').live('pagehide', function(event, ui){
+		  var page = jQuery(event.target);
+
+		  if(page.attr('data-cache') == 'never'){
+		    page.remove();
+		  };
+	});
+
 	
 	$("a.editBet").live("click", function(e){
 		e.stopImmediatePropagation();
@@ -97,7 +107,8 @@ $(document).bind("mobileinit", function() {
 
 			$.ajax({
 				type : 'POST',
-				url : '../bet',
+				url : ajax_bet_url,
+				cache: false,
 				data : queryString,
 				success : function(data) {
 					if (data == "true") {

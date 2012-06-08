@@ -42,14 +42,22 @@ public class StartController {
 	private HighScoreService highScoreService;
 
     @RequestMapping("index")
-    public ModelAndView index(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
-    	return groups(modelMap, request, response);
+    public ModelAndView index(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, Principal principal) {
+    	return groups(modelMap, request, response, principal);
     }
     
     @RequestMapping("groups")
-    public ModelAndView groups(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView groups(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, Principal principal) {
+
     	final List<GameGroup> gameGroups = GameGroup.findAllGameGroupsBySortOrder();
     	modelMap.put("gameGroups", gameGroups);
+    	
+    	final List<Game> games = Game.findNextGames(10).getResultList();
+    	modelMap.put("games", games);
+    	final BetUser user = getUser(principal);
+    	final HashMap<Long, Bet> bets = betManager.getBetsForGames(user, games);
+    	modelMap.put("bets", bets);
+    	
         return new ModelAndView("start/group-list", modelMap);
     }
     

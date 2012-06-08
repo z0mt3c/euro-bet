@@ -40,6 +40,12 @@
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
 <link rel="stylesheet" href="${bet_css}" />
+
+<spring:url value="/start/bet" var="ajax_bet_url" />
+<script type="text/javascript">
+var ajax_bet_url = "${ajax_bet_url}";
+</script>
+
 <script src="http://code.jquery.com/jquery-1.6.4.min.js">
 <!-- dummy -->
 </script>
@@ -53,7 +59,8 @@
 </head>
 
 <body>
-<div data-role="page">
+<div data-role="page" data-cache="never" data-dom-cache="false">
+
 	<tiles:insertAttribute name="body" ignore="true" />
 		<spring:url value="/betusers" var="admin_url"/>
 		<spring:url value="/resources/j_spring_security_logout" var="logout_url"/>
@@ -79,12 +86,12 @@
 					</sec:authorize>
 					
 					<sec:authorize access="isAuthenticated()">
-						<li><a href="${logout_url}" rel="external" data-icon="delete"><spring:message code="logout"/></a></li>
+						<li><a href="${logout_url}" data-icon="delete"><spring:message code="logout"/></a></li>
 					</sec:authorize>
 					
 					<sec:authorize access="!isAuthenticated()">
-						<li><a href="${register_url}" rel="external" data-icon="plus"><spring:message code="register"/></a></li>
-						<li><a href="${login_url}" rel="external" data-icon="check"><spring:message code="login"/></a></li>
+						<li><a href="${register_url}" data-icon="plus"><spring:message code="register"/></a></li>
+						<li><a href="${login_url}" data-icon="check"><spring:message code="login"/></a></li>
 					</sec:authorize>
 				</ul>
 			</div><!-- /navbar -->
