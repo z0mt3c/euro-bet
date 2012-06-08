@@ -36,6 +36,7 @@
 <link rel="apple-touch-icon" sizes="57x57" href="${apple_icon_57x57}" />
 <link rel="apple-touch-icon" sizes="72x72" href="${apple_icon_72x72}" />
 <link rel="apple-touch-icon" sizes="114x114" href="${apple_icon_114x114}" />
+<link rel="icon" type="image/png" href="${apple_icon_114x114}" />
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
 <link rel="stylesheet" href="${bet_css}" />
