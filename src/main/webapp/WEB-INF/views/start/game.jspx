@@ -24,7 +24,7 @@
 				<div class="ui-block-a" style="text-align: center;">
 					<img
 						src="${team_home_img}" />
-					<h3 class="ellipses">${game.teamHome.name}</h3>
+					<h3 class="ellipses"><spring:message code="team_${fn:toLowerCase(fn:replace(game.teamHome.name,' ','_'))}" text="${game.teamHome.name}" /></h3>
 				</div>
 				<div class="ui-block-b" style="text-align: center;">
 					<h1>${game.scoreHome} : ${game.scoreAway}</h1>
@@ -33,7 +33,7 @@
 				<div class="ui-block-c" style="text-align: center;">
 					<img
 						src="${team_away_img}" />
-					<h3 class="ellipses">${game.teamAway.name}</h3>
+					<h3 class="ellipses"><spring:message code="team_${fn:toLowerCase(fn:replace(game.teamAway.name,' ','_'))}" text="${game.teamAway.name}" /></h3>
 				</div>
 			</div>
 			<!-- /grid-b -->
