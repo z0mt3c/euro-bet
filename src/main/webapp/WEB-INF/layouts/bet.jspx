@@ -25,7 +25,7 @@
 	</c:if>
 </title>
 <spring:url value="/styles/bet.css" var="bet_css" />
-<spring:url value="/js/bet.js" var="bet_js" />
+<spring:url value="/js/bet2.js" var="bet_js" />
  
 <!-- iPhone Stuff -->
 <spring:url value="/apple-touch-icon.png" var="apple_icon" />

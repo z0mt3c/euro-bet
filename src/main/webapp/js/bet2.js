@@ -3,6 +3,7 @@ function isNumber(n) {
 };
 
 $(document).bind("mobileinit", function() {
+	$.ajaxSetup({ cache: false });
 	$.mobile.page.prototype.options.domCache = false;
 	$.mobile.page.prototype.options.addBackBtn = true;
 	
