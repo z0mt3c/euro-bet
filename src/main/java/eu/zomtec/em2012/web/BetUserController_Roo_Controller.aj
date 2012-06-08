@@ -58,17 +58,6 @@ privileged aspect BetUserController_Roo_Controller {
         return "betusers/list";
     }
     
-    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String BetUserController.update(@Valid BetUser betUser, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, betUser);
-            return "betusers/update";
-        }
-        uiModel.asMap().clear();
-        betUser.merge();
-        return "redirect:/betusers/" + encodeUrlPathSegment(betUser.getId().toString(), httpServletRequest);
-    }
-    
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String BetUserController.updateForm(@PathVariable("id") Long id, Model uiModel) {
         populateEditForm(uiModel, BetUser.findBetUser(id));
