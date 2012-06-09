@@ -47,14 +47,16 @@ public class HighScoreService {
 
 	private void assignPossitions(final List<HighScore> list) {
 		HighScore lastScore = null;
+		Integer i = 0;
 		
 		for (HighScore highScore : list) {
+			i++;
 			if (lastScore == null) {
 				highScore.setPosition(1);
 			} else if (lastScore.getTotalScore().equals(highScore.getTotalScore())) {
 				highScore.setPosition(lastScore.getPosition());
 			} else if (lastScore.getTotalScore() > highScore.getTotalScore()){
-				highScore.setPosition(lastScore.getPosition()+1);
+				highScore.setPosition(i);
 			} else {
 				throw new RuntimeException("Scoreboard broken!");
 			}

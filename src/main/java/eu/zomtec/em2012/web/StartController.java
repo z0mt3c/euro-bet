@@ -108,7 +108,7 @@ public class StartController {
     	modelMap.put("bets", bets);
     	
     	final List<HighScore> highScoreTemp = highScoreService.getHighScoreTemp();
-    	modelMap.put("scores_temp", highScoreService.getHighScorePartForUser(user.getId(), 5, highScoreTemp));
+    	modelMap.put("scores_temp", highScoreService.getHighScorePartForUser(betUser.getId(), 5, highScoreTemp));
     	
     	return new ModelAndView("start/user", modelMap);
     }
