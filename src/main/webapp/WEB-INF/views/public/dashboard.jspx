@@ -38,7 +38,9 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		if (${reload} > 0) {
-			setTimeout("location.reload(true);", ${reload}*1000);
+			if (${not empty runningGames}) {
+				setTimeout("location.reload(true);", ${reload}*1000);
+			}
 		}
 		
 		$('#counter').countdown({
@@ -49,7 +51,7 @@
 			digitWidth : 53,
 			digitHeight : 77,
 			timerEnd : function() {
-				location.reload(true);
+				setTimeout("location.reload(true);", 5000);
 			},
 			image : "../images/digits.png"
 		});
@@ -102,7 +104,9 @@
 					<div class="ui-block-a" style="text-align: center; width: 200px;">
 						<img
 							src="${team_home_img}" />
-						<h3 class="ellipses"><spring:message code="team_${fn:toLowerCase(fn:replace(nextGame.teamHome.name,' ','_'))}" text="${nextGame.teamHome.name}" /></h3>
+						<h3 class="ellipses">
+							<spring:message code="team_${fn:toLowerCase(fn:replace(nextGame.teamHome.name,' ','_'))}" text="${nextGame.teamHome.name}" />
+						</h3>
 					</div>
 					<div class="ui-block-b" style="text-align: center; width: 50px;">
 						<h1 style="font-size:40px;">:</h1>
@@ -110,7 +114,9 @@
 					<div class="ui-block-c" style="text-align: center; width: 200px;">
 						<img
 							src="${team_away_img}" />
-						<h3 class="ellipses"><spring:message code="team_${fn:toLowerCase(fn:replace(nextGame.teamAway.name,' ','_'))}" text="${nextGame.teamAway.name}" /></h3>
+						<h3 class="ellipses">
+							<spring:message code="team_${fn:toLowerCase(fn:replace(nextGame.teamAway.name,' ','_'))}" text="${nextGame.teamAway.name}" />
+						</h3>
 					</div>
 				</div>
 					</div>
