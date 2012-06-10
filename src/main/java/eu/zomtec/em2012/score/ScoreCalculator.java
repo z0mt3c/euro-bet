@@ -3,6 +3,7 @@ package eu.zomtec.em2012.score;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Component;
 
 import eu.zomtec.em2012.domain.Bet;
@@ -34,11 +35,18 @@ public class ScoreCalculator {
 	}
 	
 	public BetScoreType detectBetScoreType(Game game, Bet bet) {
+		boolean gameDraw = game.getScoreHome().equals(game.getScoreAway()); 
+		boolean betDraw = bet.getScoreHome().equals(bet.getScoreAway()); 
+		boolean gameHomeWin = game.getScoreHome() > game.getScoreAway();
+		boolean gameAwayWin = game.getScoreAway() > game.getScoreHome();
+		boolean betHomeWin = bet.getScoreHome() > bet.getScoreAway();
+		boolean betAwayWin = bet.getScoreAway() > bet.getScoreHome();
+		
 		if (game.getScoreHome().equals(bet.getScoreHome()) && game.getScoreAway().equals(bet.getScoreAway())) {
 			return BetScoreType.SCORE_MATCH;
 		} else if ((game.getScoreHome() - game.getScoreAway()) == (bet.getScoreHome() - bet.getScoreAway())) {
 			return BetScoreType.SCORE_DIFFERENCE;
-		} else if (!game.getScoreHome().equals(game.getScoreAway()) && (game.getScoreHome() > game.getScoreAway() == bet.getScoreHome() > bet.getScoreAway())) {
+		} else if ((gameDraw && betDraw) || (gameHomeWin && betHomeWin) || (gameAwayWin && betAwayWin)) {
 			return BetScoreType.SCORE_WINNER;
 		} else {
 			return BetScoreType.NOTHING;

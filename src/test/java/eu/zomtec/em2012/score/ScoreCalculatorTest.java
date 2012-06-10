@@ -14,6 +14,25 @@ import eu.zomtec.em2012.domain.GameStatus;
 public class ScoreCalculatorTest {
 	private ScoreCalculator scoreCalculator = new ScoreCalculator();
 	
+	
+	@Test
+	public void testProblem1() {
+		final Game game = new Game();
+		game.setScoreHome(1);
+		game.setScoreAway(3);
+		game.setGameStatus(GameStatus.RUNNING);
+		game.setGameGroup(new GameGroup());
+		
+		final Bet bet = new Bet();
+		bet.setScoreHome(1);
+		bet.setScoreAway(1);
+		
+		scoreCalculator.reviewBet(game, bet);
+		Assert.assertEquals(BetScoreType.NOTHING, bet.getScoreType());
+		Assert.assertEquals(Integer.valueOf(BetScoreType.NOTHING.getPoints()), bet.getScore());
+		Assert.assertEquals(BetStatus.SCORE_TEMP, bet.getBetStatus());
+	}
+	
 	@Test
 	public void testBetUpdate() {
 		final Game game = new Game();
