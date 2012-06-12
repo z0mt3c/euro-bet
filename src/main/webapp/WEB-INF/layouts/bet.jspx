@@ -26,6 +26,10 @@
 </title>
 <spring:url value="/styles/bet.css" var="bet_css" />
 <spring:url value="/js/bet2.js" var="bet_js" />
+
+<spring:url value="/styles/jquery.mobile-1.1.0.min.css" var="jqm_css" />
+<spring:url value="/js/jquery-1.6.4.min.js" var="jq_js" />
+<spring:url value="/js/jquery.mobile-1.1.0.min.js" var="jqm_js" />
  
 <!-- iPhone Stuff -->
 <spring:url value="/apple-touch-icon.png" var="apple_icon" />
@@ -38,7 +42,7 @@
 <link rel="apple-touch-icon" sizes="114x114" href="${apple_icon_114x114}" />
 <link rel="icon" type="image/png" href="${apple_icon_114x114}" />
 
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+<link rel="stylesheet" href="${jqm_css}" />
 <link rel="stylesheet" href="${bet_css}" />
 
 <spring:url value="/start/bet" var="ajax_bet_url" />
@@ -46,14 +50,13 @@
 var ajax_bet_url = "${ajax_bet_url}";
 </script>
 
-<script src="http://code.jquery.com/jquery-1.6.4.min.js">
+<script src="${jq_js}">
 <!-- dummy -->
 </script>
 <script src="${bet_js}">
 <!-- dummy -->
 </script>
-<script
-	src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js">
+<script src="${jqm_js}">
 <!-- dummy -->
 </script>
 </head>
