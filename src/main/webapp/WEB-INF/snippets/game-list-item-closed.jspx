@@ -8,7 +8,7 @@
 	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
 	<tiles:importAttribute />
 
-	<c:url value="game/${game.id}" var="gameUrl" />
+	<spring:url value="/start/game/${game.id}" var="gameUrl" />
 
 	<c:choose>
 		<c:when test="${game.gameStatus == 'UPCOMMING'}">

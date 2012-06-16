@@ -3,6 +3,7 @@ package eu.zomtec.em2012.web;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -19,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import eu.zomtec.em2012.domain.Bet;
 import eu.zomtec.em2012.domain.BetUser;
 import eu.zomtec.em2012.domain.Game;
 import eu.zomtec.em2012.domain.GameStatus;
 import eu.zomtec.em2012.domain.News;
+import eu.zomtec.em2012.manager.BetManager;
 import eu.zomtec.em2012.score.HighScore;
 import eu.zomtec.em2012.score.HighScoreService;
 
@@ -35,6 +38,9 @@ public class PublicController {
 	@Autowired
 	private HighScoreService highScoreService;
 	
+	@Autowired
+	private BetManager betManager;
+	
 	@RequestMapping(value={"/","/news"})
 	public String news(ModelMap modelMap, Principal principal) {
 		final List<News> news = News.findNewsEntries(10);
@@ -45,6 +51,17 @@ public class PublicController {
 		final BetUser user = getUser(principal);
 		if (user != null) {
 			modelMap.put("scores_temp_my", highScoreService.getHighScorePartForUser(user.getId(), 2, new ArrayList<HighScore>(highScores)));
+			
+	    	final List<Game> runningGames = Game.findPastGames(GameStatus.RUNNING, 4).getResultList();
+	    	final List<Game> finishedGames = Game.findPastGames(GameStatus.FINISHED, 4).getResultList();
+	    	
+	    	final List<Game> allGames = new ArrayList<Game>(runningGames.size()+finishedGames.size());
+	    	allGames.addAll(runningGames);
+	    	allGames.addAll(finishedGames);
+	    	modelMap.put("games",allGames);
+	    	
+	    	final HashMap<Long, Bet> bets = betManager.getBetsForGames(user, allGames);
+	    	modelMap.put("bets", bets);
 		}
 
 		modelMap.put("scores_temp", highScores.size() > 5 ? highScores.subList(0, 5) : highScores);

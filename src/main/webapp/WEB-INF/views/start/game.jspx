@@ -47,7 +47,9 @@
 							<c:if test="${not empty bet.score}">
 								<c:if test="${empty betPointGroup || betPointGroup != bet.score}">
 									<c:set var="betPointGroup" value="${bet.score}"/>
-									<li data-role="list-divider"><spring:message code="bet_score_group_${bet.score}" text="${bet.score} POINTS" /></li>
+									<li data-role="list-divider"><spring:message code="bet_score_group_${bet.score}" text="${bet.score} POINTS" />
+									<c:out value=" " />  <spring:message code="points_factor_${game.gameGroup.factor}" />
+									</li>
 								</c:if>
 							</c:if>
 				
