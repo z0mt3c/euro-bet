@@ -43,6 +43,10 @@ public class BetManager {
 	}
 
 	public HashMap<Long,Bet> getBetsForGames(BetUser user, List<Game> games) {
+		if (games == null || games.isEmpty()) {
+			return null;
+		}
+		
 		final TypedQuery<Bet> bets = Bet.findBetByBetUserAndGame(user, games);
 		final List<Bet> resultList = bets.getResultList();
 		final HashMap<Long, Bet> betMap = new HashMap<Long, Bet>(resultList.size());
