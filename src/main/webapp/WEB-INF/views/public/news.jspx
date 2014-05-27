@@ -21,8 +21,7 @@
 		</div>
 
 		<p class="block">
-			Welcome to the EURO 2012 betting competition. Everyone from the BU18 is
-			welcome to join. Currently <strong> <fmt:formatNumber
+			Welcome to the EURO 2012 betting competition. Currently <strong> <fmt:formatNumber
 					value="${money}" type="CURRENCY" currencyCode="VND"
 					maxFractionDigits="0" /> are in the Jackpot
 			</strong>. This means if you score the highest amount of points by betting on
@@ -31,12 +30,10 @@
 					maxFractionDigits="0" />
 			</strong> . The second (30%) and third (20%) place will also be awarded. For
 			more details read "Rules of the competition". The Jackpot will
-			increase by everyone who joins the competition. The entrance fees
-			(minimum of 300.000 VND / 150.000 VND for girls) will be completely
-			added to the Jackpot.
+			increase by everyone who joins the competition.
 		</p>
 		<p class="block">
-			<strong>Don't forget:</strong> To activate your personal account you need to pay the wager to Truong Anh Vu. The account will be activated afterwards. Currently ${usersTotal} users are registered and ${usersActive} are activated.
+			<strong>Don't forget:</strong> Accounts need to be actived...! Currently ${usersTotal} users are registered and ${usersActive} are activated.
 		</p>
 
 		<br />
